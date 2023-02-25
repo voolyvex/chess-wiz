@@ -1,4 +1,4 @@
-# chess-prep-app
+# chess-prep
 For chess enthusiasts, students, and their coaches to prepare them for an upcoming match.
 
 ## project notes
