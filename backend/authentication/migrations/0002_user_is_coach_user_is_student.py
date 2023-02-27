@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='is_coach',
-            field=models.BooleanField(default=False, verbose_name='student status'),
+            field=models.BooleanField(default=False, verbose_name='coach status'),
         ),
         migrations.AddField(
             model_name='user',
