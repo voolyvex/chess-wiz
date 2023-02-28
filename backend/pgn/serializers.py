@@ -7,5 +7,6 @@ from .models import Pgn
 class PgnSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pgn
-        fields = ['id', 'pgn', 'title', 'desc']
+        fields = ['id', 'pgn']
+        depth = 1
         
