@@ -1,10 +1,35 @@
+.play-page {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 1em;
+  margin-left: 20%;
+  margin-right: 10%;
+}
 
-  .play{
-    margin: 10rem;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50%;
-    width: 50%;
+.play-container {
+  padding-left: 25px;
+  flex: 60%;
+  float: left;
+}
+
+.play {
+  width: auto;
+  height: auto;
+}
+
+.save-container {
+  padding-left: 25px;
+  flex: 20%;
+  padding-right: 15px;
+  float: left;
+}
+
+@media screen and (max-width: 1230px) {
+  footer {
+    width: auto;
   }
+  .play-page {
+    display: grid;
+  }
+}

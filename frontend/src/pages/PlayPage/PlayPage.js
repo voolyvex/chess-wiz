@@ -2,10 +2,12 @@ import "./Play.css";
 import React, { useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
-
+import useAuth from "../../hooks/useAuth";
+import SavePgnToDatabase from "../../components/SavePgnToDatabase/SavePgnToDatabase";
 
 function Play() {
   const [game, setGame] = useState(new Chess());
+  const [user] = useAuth();
   //Let's perform a function on the game state
 
   function safeGameMutate(modify) {
@@ -21,7 +23,10 @@ function Play() {
 
     //exit if the game is over
 
-    if (game.game_over() || game.in_draw() || possibleMove.length === 0) return;
+    if (game.game_over() || game.in_draw() || possibleMove.length === 0) {
+      
+      return;
+    }
     //select random move
 
     const randomIndex = Math.floor(Math.random() * possibleMove.length);
@@ -39,7 +44,7 @@ function Play() {
       move = game.move({
         from: source,
         to: target,
-        promotion: "q"
+        promotion: "q",
       });
     });
     //illegal move
@@ -48,10 +53,19 @@ function Play() {
     setTimeout(makeRandomMove, 200);
     return true;
   }
-  console.log({game})
+  var date=Date()
+  game.header('White', user.username, 'Black', 'program', 'Date', date)
+  console.log(game.pgn({ maxWidth: 5, newline: '<br />' }));
   return (
-    <div className="play">
-      <Chessboard position={game.fen()} onPieceDrop={onDrop} />
+    <div className="play-page">
+      <div className="play-container">
+        <div className="play">
+          <Chessboard position={game.fen()} onPieceDrop={onDrop} />
+        </div>
+      </div>
+      <div className="save-container">
+      <SavePgnToDatabase pgn={game.pgn({ maxWidth: 5, newline: '<br />' })}/>
+      </div>
     </div>
   );
 }
