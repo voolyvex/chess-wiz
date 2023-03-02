@@ -15,6 +15,8 @@ function setUserObject(user) {
     username: user.username,
     id: user.user_id,
     first_name: user.first_name,
+    is_coach: user.is_coach,
+    is_student: user.is_student
   };
 }
 
@@ -30,6 +32,8 @@ export const AuthProvider = ({ children }) => {
   const registerUser = async (registerData) => {
     try {
       let finalData = {
+        is_student: registerData.is_student,
+        is_coach: registerData.is_coach,
         username: registerData.username,
         password: registerData.password,
         email: registerData.email,

@@ -33,3 +33,12 @@ li {
   cursor: pointer;
   font-size: 2rem;
 }
+
+.navlinks {
+  justify-content: flex-end;
+  font-size: 1rem;
+}
+.loggedin {
+  padding-right: 0;
+  text-align: right;
+}
