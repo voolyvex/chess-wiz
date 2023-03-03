@@ -35,7 +35,11 @@ const HomePage = () => {
 
   //This will be your api response
   let pgn =
-    ' [Event "EU-ch U12"]\r\n[Site "Peniscola ESP"]\r\n[Date "2002.10.03"]\r\n[EventDate "2002.09.29"]\r\n[Round "5"]\r\n[Result "1-0"]\r\n[White "Ian Nepomniachtchi"]\r\n[Black "Magnus Carlsen"]\r\n[ECO "B04"]\r\n[WhiteElo "2306"]\r\n[BlackElo "2214"]\r\n[PlyCount "81"]\r\n\r\n1. e4 Nf6 2. e5 Nd5 3. Nf3 d6 4. d4 dxe5 5. Nxe5 g6 6. Bc4 c6\r\n7. Nc3 Be6 8. O-O Nd7 9. Qf3 Bg7 10. Re1 O-O 11. Qg3 Nxe5\r\n12. dxe5 Nxc3 13. Qxc3 Bxc4 14. Qxc4 Qd5 15. Qe2 Rad8 16. Bg5\r\nQe6 17. Qe3 b6 18. a4 Rd5 19. Bf4 Qf5 20. Qe4 Qd7 21. c3 Rd8\r\n22. h3 Qe6 23. Qe2 Rd3 24. a5 b5 25. a6 c5 26. Qe4 Qd5\r\n27. Qxd5 R3xd5 28. Ra5 c4 29. Kf1 e6 30. Be3 R8d7 31. Bd4 Bf8\r\n32. Rb1 Be7 33. b3 Bd8 34. Ra2 Rxd4 35. cxd4 c3 36. b4 Bg5\r\n37. Rd1 Rc7 38. Rc2 Be7 39. d5 Bxb4 40. d6 Rc8 41. Rb1 1-0';
+    `[White "Peregrine"]
+    [Black "program"]
+    [Date "Fri Mar 03 2023 00:40:05 GMT-0600 (Central Standard Time)"]
+    
+    1. h3 a6 2. a3 e5 3. a4 Qf6 4. h4 g6 5. a5 Ke7 6. h5 h6 7. Na3 Qc6 8. g4 Kf6`;
   // Use .replace to remove all instances of \r,\n, and \
   try {
     pgn = pgn.replace(/\r/g, "");

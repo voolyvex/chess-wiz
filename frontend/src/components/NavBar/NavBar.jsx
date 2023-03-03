@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import "./NavBar.css";
+import { FaHatWizard, FaChessRook } from "react-icons/fa"
 
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
@@ -12,7 +13,10 @@ const Navbar = () => {
       <ul>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>ChessPrep</b>
+            
+            <FaChessRook className="icon-rook"/>
+            <FaHatWizard className="icon-hat"/>
+            <h2>Chess<b className="italic">Wiz</b></h2>
           </Link>
         </li>
         <Link to='/' style={{ textDecoration: "none", color: "white" }}>
@@ -26,7 +30,7 @@ const Navbar = () => {
         </Link>
         <li className="loggedin">
           {user ? (
-            <h6 style={{ textDecoration: "none", color: "black", opacity: "66%", paddingright: "1em" }}>Logged in as <h4 style={{ color: "darkblue" }}>{user.username}</h4>
+            <h6 style={{ textDecoration: "none", color: "black", opacity: "66%", paddingright: "1em" }}>Logged in as <p style={{ color: "darkblue", fontSize: "medium" }}>{user.username}</p>
             </h6>) : ("")}
         </li>
         <li>

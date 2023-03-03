@@ -42,18 +42,34 @@ textarea[name="post"] {
   padding-left: 9px;
   vertical-align: bottom;
   background-color: rgb(54, 59, 64);
+  clear: right;
 }
 .form-title {
-  width: 380px;
+  width: auto;
+  
+  
+  
 }
 .save-button {
-  width: 30px;
+  background-color: rgb(135, 137, 140);
+  width: auto;
   color: midnightblue;
   padding: 2px;
-  vertical-align: bottom;
   height: 24px;
   margin-top: 2px;
-  box-shadow: 1px 2px 5px rgb(151, 146, 141);
-  float: right;
-  position: static;
+  box-shadow: 1px 2px 7px rgb(119, 116, 114);
+  
 }
+.save-div {
+  height: 2em;
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: .5em;
+ 
+  background: rgb(116, 117, 119);
+  border-style: hidden;
+  border-radius: 5px;
+}
+
