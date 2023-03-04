@@ -18,23 +18,23 @@ function Play() {
     });
   }
   //Movement of computer
-  function makeRandomMove() {
-    const possibleMove = game.moves();
+  // function makeRandomMove() {
+  //   const possibleMove = game.moves();
 
-    //exit if the game is over
+  //   //exit if the game is over
 
-    if (game.game_over() || game.in_draw() || possibleMove.length === 0) {
+  //   if (game.game_over() || game.in_draw() || possibleMove.length === 0) {
       
-      return;
-    }
-    //select random move
+  //     return;
+  //   }
+  //   //select random move
 
-    const randomIndex = Math.floor(Math.random() * possibleMove.length);
-    //play random move
-    safeGameMutate((game) => {
-      game.move(possibleMove[randomIndex]);
-    });
-  }
+  //   const randomIndex = Math.floor(Math.random() * possibleMove.length);
+  //   //play random move
+  //   safeGameMutate((game) => {
+  //     game.move(possibleMove[randomIndex]);
+  //   });
+  // }
 
   //Perform an action when a piece is droped by a user
 
@@ -50,7 +50,7 @@ function Play() {
     //illegal move
     if (move == null) return false;
     //valid move
-    setTimeout(makeRandomMove, 200);
+    // setTimeout(makeRandomMove, 200);
     return true;
   }
   var date=Date()

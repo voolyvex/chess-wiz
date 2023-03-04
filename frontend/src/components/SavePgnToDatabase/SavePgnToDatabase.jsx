@@ -1,21 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { HiArrowNarrowRight } from 'react-icons/hi';
+import Dropdown from '../Dropdown/Dropdown';
 import './Save.css'
+import '../Dropdown/Dropdown.css'
+
 
 const SavePgnToDatabase =({pgn}) => {
 
     const [PGN, setPGN] = useState(pgn)
 
-useEffect(()=> {
-    setPGN(pgn)
-}, [pgn]);
+    useEffect(()=> {
+        setPGN(pgn)
+    }, [pgn]);
 
-    // make axios post request to the django backend
+    // make axios POST request
     const postPGN = async () => {
-        let pgn = {
-            "pgn": PGN
-        }
+        let pgn = { "pgn": PGN }
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
             console.log(response.status)
@@ -24,9 +25,15 @@ useEffect(()=> {
         }
     };
     const handleSubmit = (e) => {
-        postPGN();
-        
+        postPGN(); 
     }
+
+    const options = [
+        { value: "my_games", label: "My Games"},
+        { value: "favorites", label: "Favorites"},
+        { value: "assigned", label: "Assigned"}
+    ];
+
     return (
         <div className='form-container'>
             <form className="save-form" onSubmit={(e) => handleSubmit(e)}>
@@ -35,14 +42,17 @@ useEffect(()=> {
                         onChange={e => setPGN(e.target.value)}
                         required={true} />
                         <div className='save-div'>
-                            <h4 className='form-title'>Save this game to My Games</h4>
+                            <h4 className='form-title'>Select Location to Save</h4>
                             <button className='save-button' type='submit'>
-                                <HiArrowNarrowRight />
+                                <HiArrowNarrowRight style={{fontSize: "20px"}}/>
                             </button>
 
                         </div>
                 </label>
             </form>
+            <div className="save-dropdown">
+                <Dropdown placeHolder="Select..." options={options} />
+            </div>
         </div >
     )
 }

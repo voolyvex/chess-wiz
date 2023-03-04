@@ -1,14 +1,15 @@
 .save-label {
   width: 380px;
+  vertical-align: middle;
 }
 .form-container {
-  min-height: 125px;
+  min-height: 155px;
   height: 50%;
   width: 380px;
 }
 
 .save-form:hover {
-  opacity: 90%;
+  opacity: 92%;
 }
 .save-form {
   border-color: grey;
@@ -37,6 +38,7 @@ textarea[name="post"] {
   max-height: 528px;
   border-width: 2px;
   border-radius: 5px;
+  border-bottom-right-radius: 0;
   border-style: outset;
   padding: 5px;
   padding-left: 9px;
@@ -47,29 +49,52 @@ textarea[name="post"] {
 .form-title {
   width: auto;
   
-  
-  
 }
 .save-button {
-  background-color: rgb(135, 137, 140);
-  width: auto;
-  color: midnightblue;
-  padding: 2px;
-  height: 24px;
-  margin-top: 2px;
-  box-shadow: 1px 2px 7px rgb(119, 116, 114);
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1px;
+  background-color: #ccc;
+  border-color: #327ceb;
+  width: 2.5rem;
+  color: darkblue;
+  padding: 1px;
+  height: 26px;
+  margin-top: 0;
+  box-shadow: 1px 2px 5px rgb(119, 116, 114);
+  padding-bottom: 4px;
   
 }
-.save-div {
-  height: 2em;
-  width: 100%;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: .5em;
- 
-  background: rgb(116, 117, 119);
-  border-style: hidden;
-  border-radius: 5px;
+.save-button:hover {
+  padding: 2px;
+  background-color: #327ceb;
+  border: 0px inset rgb(230, 226, 226);
+  border-radius: 2.5px;
+  border-style: solid;
+  opacity: 95%;
+  box-shadow: 0px 1px 1px rgb(230, 226, 226);
+}
+.save-button:active {
+  padding: 4px;
+  background-color: #327ceb;
+  border: 0px groove rgb(230, 226, 226);
+  border-radius: inherit;
+  opacity: 98%;
 }
 
+.save-div {
+  margin-top: 1px;
+  height: 2.4em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .5em;
+  background: rgb(116, 117, 119);
+  border-style:inset;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #373434;
+  padding-inline-end: 1rem;
+  margin-block-start: 1px;
+}
