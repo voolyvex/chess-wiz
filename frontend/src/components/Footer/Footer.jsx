@@ -1,9 +1,12 @@
+
 import "./Footer.css";
+import { GiWizardStaff } from "react-icons/gi"
 
 const Footer = () => {
   return (
     <footer>
-      <p>Copyright © 2022</p>{" "}
+      <GiWizardStaff />
+      <p> © 2023 ChessWiz </p>{" "}
     </footer>
   );
 };

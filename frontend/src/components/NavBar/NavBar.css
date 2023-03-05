@@ -2,6 +2,7 @@ ul {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
+  vertical-align: middle;
 }
 
 li {
@@ -9,11 +10,22 @@ li {
 }
 
 .navBar {
-  background: steelblue;
-  box-shadow: 4px 2px 5px gray;
+  background: linear-gradient(to bottom right, transparent, steelblue, steelblue, transparent);
+  opacity: 99%;
+  box-shadow: 4px 2px 5px transparent;
   color: white;
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
+}
+
+ul.nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: last baseline;
+margin: auto;
+padding: auto;
+vertical-align: middle;
+
 }
 
 .navBar button {
@@ -21,6 +33,7 @@ li {
   border: 2px solid white;
   color: white;
   padding: 0.4rem 0.5rem;
+  position: relative;;
 }
 
 .navBar button:hover {
@@ -32,6 +45,9 @@ li {
 
 .italic {
   font-style: italic;
+}
+li.brand {
+  flex-grow:2;
 }
 .brand {
   cursor: pointer;
@@ -48,10 +64,51 @@ li {
   color: aquamarine;
 }
 .navlinks {
-  justify-content: flex-end;
-  font-size: 1rem;
+  flex-grow:1;
+  display: flex;
+  margin-inline: rem;
+  min-width: fit-content;
+  width: auto;
+  max-width: 60%;
+  justify-content: space-around;
+}
+li.navlinks {
+  background-color: transparent;
+  color: #fff;
+  padding: 0.5rem;
+  text-decoration: none;
+  
+}
+.navlink {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+li.navlink {
+  
+  background-color: transparent;
+  color: #fff;
+  border: 2px hidden;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  opacity: 75%;
+  transition: all 0.6s ease-out;
+}
+li.navlink:hover,
+li.navlink:focus {
+  background-color: transparent;
+  color: black;
+  border-radius: 10px;
+  opacity: 45%;
 }
 .loggedin {
   padding-right: 0;
   text-align: right;
+}
+.logged {
+  flex-grow:2;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  
 }

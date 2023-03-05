@@ -1,20 +1,56 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
+:root {
+  --gradient: linear-gradient(to bottom, black, transparent, transparent, black),
+  linear-gradient(to right, black, transparent, transparent, rgb(68, 198, 81), transparent, rgb(9, 0, 0)),
+  linear-gradient(to bottom left, black, transparent, transparent),
+  linear-gradient(to bottom right, rgb(0, 41, 75), transparent, rgb(25, 118, 194)),
+  linear-gradient(to top left, teal, rgb(64, 71, 12),transparent),
+  linear-gradient(to top right, rgb(11, 9, 46), transparent, rgb(98, 4, 117), black),
+  linear-gradient(to left, rgb(34, 39, 139), transparent, rgb(6, 53, 63), black),
+  linear-gradient(to bottom right, black, violet,transparent, black),
+  linear-gradient(to bottom left, black, transparent, transparent, black),
+  linear-gradient(to bottom right, black, pink, red ),
+  radial-gradient(rgb(20, 20, 66), rgb(15, 15, 117), black),
+  radial-gradient(rgb(45, 45, 157), rgb(3, 3, 47), black),
+  radial-gradient(black,black,transparent, black, transparent, rgb(3, 3, 47), black);
+  --blend: lighten, multiply, overlay, screen, multiply, difference, overlay, multiply, soft-light, color-dodge, screen, overlay;
+}
+
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  @supports (-webkit-font-smoothing: antialiased) {
+  };
+  @supports (-moz-osx-font-smoothing: grayscale) {
+  };
 }
 
 html {
   box-sizing: border-box;
-  font-family: "Helvetica", "Poppins", sans-serif;
+  font-family: "Helvetica", "Segoe UI", "Poppins", sans-serif;
+  background: var(--gradient);
+  background-blend-mode: var(--blend);
+}
+
+#app {
+  position: relative;
+  min-height: 100vh;
+  height: 5000px;
 }
 
 body {
-  background: rgb(73, 73, 74);
+  margin: 0 auto;
+  padding-bottom: 3rem;
+  position:relative;
+}
+
+h1 {
+  color: white;
+  opacity: 94%;
 }
 
 p {

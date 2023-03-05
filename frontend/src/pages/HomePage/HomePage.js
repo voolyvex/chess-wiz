@@ -2,12 +2,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import PGNViewer from "../../components/PgnViewer/PgnViewer";
+import './Home.css'
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
-  const [user, token] = useAuth();
+  const [user] = useAuth();
   const [studentStatus, setStudentStatus] = useState("user");
   console.log(user);
   useEffect(() => {
@@ -16,7 +17,7 @@ const HomePage = () => {
     } else {
       setStudentStatus("Student");
     }
-  }, []);
+  }, [user]);
   // useEffect(() => {
   //   const fetchCars = async () => {
   //     try {
@@ -51,10 +52,10 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      <h1>
-        Welcome to Home Page for {studentStatus} {user.username}!
-      </h1>
-      <PGNViewer>{pgn}</PGNViewer>
+      <div id="fade-out">
+        <h1>Welcome back, {user.username}!</h1>
+      </div>
+        <PGNViewer>{pgn}</PGNViewer>
     </div>
   );
 };

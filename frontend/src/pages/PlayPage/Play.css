@@ -1,16 +1,28 @@
 .play-page {
-  display: inline-flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 1em;
-  margin-left: 20%;
-  margin-right: 10%;
+  width:1000px;
+  height: 650px;
+  max-height: 1500px;
+  display: flex;
+  flex-direction: column;
+  align-items: auto;
+  justify-content: space-between;
+  left: 0;
+  right: 0;
+  margin-top: 10rem;
+  margin: auto;
+  overflow: hidden;
+  position: fixed;
 }
 
 .play-container {
-  padding-left: 25px;
-  flex: 60%;
-  float: left;
+  height: 564px;
+  margin: 0 auto;
+  padding: 0;
+  float: left; 
+  border: 3px solid rgb(100, 80, 80);
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgb(30, 30, 30), -2px -2px 2px rgb(100, 80, 80);
+  
 }
 
 .play {
@@ -18,12 +30,17 @@
   height: auto;
 }
 
+
 .save-container {
-  padding-left: 25px;
-  flex: 20%;
-  padding-right: 15px;
-  float: left;
+  margin: auto;
+  padding: auto;
 }
+@media screen and (object-position: top){
+  .play-page{
+    position: sticky;
+  }
+};
+  
 
 @media screen and (max-width: 1230px) {
   footer {
@@ -31,5 +48,13 @@
   }
   .play-page {
     display: grid;
+    margin-left: 25% ;
+    width: 100%;
+    row-gap: 1em;
+    height:auto;
+  }
+  .save-container {
+    margin-left: 13%;
+    padding: auto;
   }
 }

@@ -2,6 +2,7 @@ import React, {useLayoutEffect} from 'react'
 import Children from 'react-children-utilities'
 import * as uuid from 'uuid'
 import { pgnView } from '@mliebelt/pgn-viewer'
+import '../../pages/HomePage/Home.css'
 
 function PGNViewer(props) {
   const gameDecription = Children.onlyText(props.children)
@@ -12,10 +13,10 @@ function PGNViewer(props) {
       {
         pgn: gameDecription,
         timerTime: '1',
-        locale: 'pl',
+        locale: 'en',
         startPlay: 1,
         showResult: true,
-        boardSize: '340',
+        boardSize: '564',
         showFen: true,
         pieceStyle: 'merida'
       }
@@ -23,7 +24,7 @@ function PGNViewer(props) {
   })
 
   return (
-    <div id={id}></div>
+    <div className="board-container" id={id}></div>
   )
 }
 
