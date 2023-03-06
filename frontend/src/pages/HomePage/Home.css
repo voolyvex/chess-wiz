@@ -5,6 +5,10 @@
   width: fit-content;
 }
 
+.board-container {
+  margin: auto;
+}
+
 #fade-out {
   animation: fade-out 5s 1;
   -webkit-animation: fade-out 5s 1;
@@ -59,8 +63,4 @@
       to {
         opacity: 0;
       }
-}
-
-.board-container {
-  margin: auto;
 }

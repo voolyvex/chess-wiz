@@ -1,0 +1,93 @@
+#fade-in {
+    animation: fade-in 10s normal forwards ease-in;
+    -webkit-animation: fade-in 5s 1;
+    -moz-animation: fade-in 5s 1;
+    -o-animation: fade-in 5s 1;
+    -ms-animation: fade-in 5s 1;
+    animation-fill-mode: auto;
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+    
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      visibility: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @-moz-keyframes fade-in {
+      from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+  }
+  
+  @-webkit-keyframes fade-out {
+      from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+  }
+  
+  @-o-keyframes fade-out {
+      from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+  }
+  
+  @-ms-keyframes fade-in {
+      from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+  }
+
+.delay {
+    
+    animation-duration: 10s !important;
+    
+}
+
+.about-container {
+    display: block;
+    margin: 0 auto;
+    width: 700px;
+    word-wrap: wrap;
+    text-align: center;
+    flex-direction: column;
+    padding: 2rem;
+    line-break:strict;
+    line-height: normal;
+}
+
+#about-about {
+    margin-inline: 2rem;
+    padding: 3%;
+    text-indent: 2em;
+    text-align: left;
+    font-size: large;
+    margin-top: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.about {
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    justify-content: center;
+    word-wrap: normal;
+    
+}

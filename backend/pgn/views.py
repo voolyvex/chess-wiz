@@ -9,7 +9,7 @@ from rest_framework.decorators import permission_classes
 
 class PgnList(APIView):
     
-    @permission_classes([AllowAny])
+    @permission_classes([IsAuthenticated])
     def get(self, request):
         pgns = Pgn.objects.all()
         serializer = PgnSerializer(pgns, many=True)

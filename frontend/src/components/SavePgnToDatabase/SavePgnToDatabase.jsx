@@ -6,12 +6,15 @@ import './Save.css'
 import '../Dropdown/Dropdown.css'
 
 
-const SavePgnToDatabase =({pgn}) => {
+const SavePgnToDatabase =({ headers, pgn }) => {
+    
+    const [PGN, setPGN] = useState(pgn);
+    
 
-    const [PGN, setPGN] = useState(pgn)
 
     useEffect(()=> {
         setPGN(pgn)
+      
     }, [pgn]);
 
     // make axios POST request
@@ -36,7 +39,7 @@ const SavePgnToDatabase =({pgn}) => {
 
     return (
         <div className='form-container'>
-            <form className="save-form" onSubmit={(e) => handleSubmit(e)}>
+            <form className="save-form" spellCheck="false" onSubmit={(e) => handleSubmit(e)}>
                 <label className='save-label'>
                     <textarea className="form-textarea" name="post" value={PGN}
                         onChange={e => setPGN(e.target.value)}

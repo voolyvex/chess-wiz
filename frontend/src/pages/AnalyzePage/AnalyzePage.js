@@ -1,13 +1,12 @@
+import SavePgnToDatabase from "../../components/SavePgnToDatabase/SavePgnToDatabase";
 import "../PlayPage/Play.css";
 import React, { useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
-import useAuth from "../../hooks/useAuth";
-import SavePgnToDatabase from "../../components/SavePgnToDatabase/SavePgnToDatabase";
 
-function Analyze() {
+function AnalyzePage() {
   const [game, setGame] = useState(new Chess());
-  const [user] = useAuth();
+  //   const [headers, setHeaders] = useState(["Event", "", "Site", "", "Date", "", "Round", "", "White", "", "Black", "", "Result", "", "WhiteElo", "", "BlackElo", "", "ECO", "", "Archived", date])
   //Let's perform a function on the game state
 
   function safeGameMutate(modify) {
@@ -17,26 +16,8 @@ function Analyze() {
       return update;
     });
   }
-//   Movement of computer
-  function makeRandomMove() {
-    const possibleMove = game.moves();
 
-    //exit if the game is over
-
-    if (game.game_over() || game.in_draw() || possibleMove.length === 0) {
-      
-      return;
-    }
-    //select random move
-
-    const randomIndex = Math.floor(Math.random() * possibleMove.length);
-    //play random move
-    safeGameMutate((game) => {
-      game.move(possibleMove[randomIndex]);
-    });
-  }
-
-//   Perform an action when a piece is droped by a user
+  //   Perform an action when a piece is droped by a user
 
   function onDrop(source, target) {
     let move = null;
@@ -50,11 +31,48 @@ function Analyze() {
     //illegal move
     if (move == null) return false;
     //valid move
-    setTimeout(makeRandomMove, 200);
     return true;
   }
-  var date=Date()
-  game.header('White', user.username, 'Black', 'AI (Level 0)', 'Date', date);
+
+  var date = new Date().toLocaleDateString();
+
+  //   This is the STR (Seven Tag Roster).  The interpretation of these tags is
+  // fixed as is the order in which they appear.  Although the definition and use of
+  // additional tag names and semantics is permitted and encouraged when needed, the
+  // STR is the common ground that all programs should follow for public data
+  // interchange.
+  // 1) Event (the name of the tournament or match event)
+  // 2) Site (the location of the event)
+  // 3) Date (the starting date of the game)
+  // 4) Round (the playing round ordinal of the game)
+  // 5) White (the player of the white pieces)
+  // 6) Black (the player of the black pieces)
+  // 7) Result (the result of the game)
+
+//   game.header(
+//     "Event",
+//     "",
+//     "Site",
+//     "",
+//     "Date",
+//     "",
+//     "Round",
+//     "",
+//     "White",
+//     "",
+//     "Black",
+//     "",
+//     "Result",
+//     "",
+//     "WhiteElo",
+//     "",
+//     "BlackElo",
+//     "",
+//     "ECO",
+//     "",
+//     "Archived",
+//     date,
+//   );
   
   return (
     <div className="play-page">
@@ -64,10 +82,34 @@ function Analyze() {
         </div>
       </div>
       <div className="save-container">
-      <SavePgnToDatabase pgn={game.pgn({ maxWidth: 5, newline: '<br />' })}/>
+        <SavePgnToDatabase
+          headers={game.header("Event",
+          "",
+          "Site",
+          "",
+          "Date",
+          "",
+          "Round",
+          "",
+          "White",
+          "",
+          "Black",
+          "",
+          "Result",
+          "",
+          "WhiteElo",
+          "",
+          "BlackElo",
+          "",
+          "ECO",
+          "",
+          "Archived",
+          date)}
+          pgn={game.pgn({ maxWidth: 5, newline: "<br />" })}
+        />
       </div>
     </div>
   );
 }
 
-export default Analyze;
+export default AnalyzePage;

@@ -36,11 +36,25 @@ const HomePage = () => {
 
   //This will be your api response
   let pgn =
-    `[White "Peregrine"]
-    [Black "program"]
-    [Date "Fri Mar 03 2023 00:40:05 GMT-0600 (Central Standard Time)"]
+    `[Event "ICC 15 5"]
+    [Site "Internet Chess Club"]
+    [Date "2012.06.13"]
+    [Round "-"]
+    [White "JosephW"]
+    [Black "kanvamuni"]
+    [Result "1-0"]
+    [ICCResult "Black resigns"]
+    [WhiteElo "2069"]
+    [BlackElo "1881"]
+    [Opening "French: Tarrasch"]
+    [ECO "C03"]
+    [NIC "FR.14"]
+    [Time "21:14:07"]
+    [TimeControl "900+5"]
     
-    1. h3 a6 2. a3 e5 3. a4 Qf6 4. h4 g6 5. a5 Ke7 6. h5 h6 7. Na3 Qc6 8. g4 Kf6`;
+    1. e4 e6 2. d4 d5 3. Nd2 Be7 4. e5 c5 5. c3 cxd4 6. cxd4 Nc6 7. Nb3 a5 8. a4
+    Bb4+ 9. Bd2 Nge7 10. Bb5 O-O 11. Nf3 Qb6 12. O-O Nf5 13. g4 Nfxd4 14. Nfxd4
+    Nxd4 15. Bxb4 Nxb3 16. Bxf8 Nxa1 17. Bd6 {Black resigns} 1-0`;
   // Use .replace to remove all instances of \r,\n, and \
   try {
     pgn = pgn.replace(/\r/g, "");

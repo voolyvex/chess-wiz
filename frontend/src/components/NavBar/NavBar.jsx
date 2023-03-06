@@ -26,7 +26,7 @@ const Navbar = () => {
           <Link to='/search' style={{ textDecoration: "none", color: "white" }}>
             <li className="navlink">Search</li>
           </Link>
-          <Link to='/play' style={{ textDecoration: "none", color: "white" }}>
+          <Link to='/analyze' style={{ textDecoration: "none", color: "white" }}>
             <li className="navlink">Analyze</li>
           </Link>
           <Link to='/play' style={{ textDecoration: "none", color: "white" }}>
