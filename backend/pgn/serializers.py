@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Pgn
+from authentication.models import User
 
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
