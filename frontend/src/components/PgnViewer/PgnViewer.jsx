@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from 'react'
+import React, { useLayoutEffect } from 'react'
 import Children from 'react-children-utilities'
 import * as uuid from 'uuid'
 import { pgnView } from '@mliebelt/pgn-viewer'
@@ -12,24 +12,18 @@ function PGNViewer(props) {
     pgnView(id,
       {
         pgn: gameDecription,
-        timerTime: '1',
-        locale: 'en',
-        startPlay: 1,
-        showResult: true,
-        boardSize: '564',
-        showFen: true,
-        pieceStyle: 'merida'
+        position: 'start', showCoords: true, orientation: 'white', theme: 'green', pieceStyle: 'merida', showResult: true, locale: 'en', timerTime: '', boardSize: '564px', layout: 'top', movesHeight: '180px', movesWidth: '500px', showFen: false, coordsInner: false, headers: true, coordsFactor: '1', coordsFontSize: '14', colorMarker: 'any', startPlay: '1', hideMovesBefore: false, notation: 'short', notationLayout: 'inline',
       }
     )
   })
 
   return (
-    <div className="board-container" id={id}></div>
+    <div id='board-matte'>
+      <div className="board-container" id={id}></div>
+
+    </div>
   )
 }
-
-// Usage
-
 
 
 export default PGNViewer;

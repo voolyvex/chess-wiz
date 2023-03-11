@@ -1,0 +1,50 @@
+.outer-feeds-container {
+    display: flex;
+    float: right;
+    width: 1200px;
+    /* adjust this value as needed */
+    /* You may also want to adjust the padding and margin of the containers */
+    position: absolute;
+}
+.feed-title {
+  color: rgb(215, 117, 68);
+}
+.search-page {
+  height: inherit;
+}
+
+  #game-feed-container {
+    width: 300px;
+    margin: 0 20px; /* adjust this value as needed */
+    padding-left: 10px;
+  }
+  
+  #game-feed {
+    color: orange;
+    list-style: none;
+  }
+  
+  .game-card-container {
+    margin: auto;
+    background: rgb(45, 45, 45, .1);
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .game-card {
+    margin: auto;
+  }
+  
+  #gheader {
+    padding: 2rem;
+    text-align: justify;
+    font-size: medium;
+    text-decoration: none;
+    list-style: none;
+  }
+  
+  #gmoves {
+    text-decoration: solid;
+    color: lightsalmon;
+  }
+  

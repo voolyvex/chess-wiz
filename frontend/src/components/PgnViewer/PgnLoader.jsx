@@ -1,12 +1,66 @@
-import React from 'react';
-// import PGNViewer from './PgnViewer';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import PGNViewer from './PgnViewer';
+import axios from 'axios';
 
-const PgnLoader = (props) => {
-    return (
-        <></>
-        // <PGNViewer>
-        //     [Result "1-0"] [White "Adolf Anderssen"] [Black "Dufresne"]1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 { This is the Evan's Gambit in the Giuco Piano, a violent opening leading to attacks that was popular in Anderssen's time. } 4...Bxb4 { Accepting gambits was a manly thing to do } 5.c3 Ba5 6.d4 { Gaining more time } 6...exd4 7.O-O d3 { Wasting time } 8.Qb3 { Threatening Bxf7 } 8...Qf6 9.e5 Qg6 { Black does not capture because he would open the e-file } 10.Re1! Nge7 11.Ba3 b5 { Trying to counterattack?! } 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 { Note that the king is still stuck in the center } 16.Bxd3 { Threatening a discovery with Nd6+, winning the queen } 16...Qh5 17.Nf6+ { Forces a capture of the knight. After gxf6 exf6, white rooks will be able to attack down the e-file at blacks exposed king. That is why you have to castle early! } 17...gxf6 18.exf6 Rg8 19.Rad1! { Getting another rook in the fight. } 19...Qxf3 { Oh no! Black threatens mate by Qxg2 and the g pawn is pinned. } 20.Rxe7+ Nxe7 { Forced checkmate for white now } 21.Qxd7+!! { White has to keep on checking since black is threatening mate. } 21...Kxd7 ( 21...Kf8 22.Qxe7# ) 22.Bf5+ { The king has to move because of double check } 22...Ke8 { Now can you see it? } ( 22...Kc6 { allows an immediate } 23.Bd7# ) 23.Bd7+ Kf8 ( { or } 23...Kd8 ) 24.Bxe7# { Mate!! }  1-0
-        // </PGNViewer>
-    )
-}
+const PgnLoader = ({ pgns }) => {
+  const { id } = useParams();
+  const [pgn, setPgn] = useState('');
+
+  const defaultPgn = `[Event "Paris"]
+  [Site "Paris FRA"]
+  [Date "1858.??.??"]
+  [EventDate "?"]
+  [Round "?"]
+  [Result "1-0"]
+  [White "Paul Morphy"]
+  [Black "Duke Karl / Count Isouard"]
+  [ECO "C41"]
+  [WhiteElo "?"]
+  [BlackElo "?"]
+  [PlyCount "33"]
+
+  1.e4 e5 2.Nf3 d6 3.d4 Bg4 {This is a weak move already.--Fischer} 4.dxe5 Bxf3 5.Qxf3 dxe5 6.Bc4 Nf6 7.Qb3 Qe7
+  8.Nc3 c6 9.Bg5 {Black is in what's like a zugzwang position here. He can't develop the [Queen's] knight because the pawn is hanging, the bishop is blocked because of the Queen.--Fischer} b5 10.Nxb5 cxb5 11.Bxb5+ Nbd7 12.O-O-O Rd8
+  13.Rxd7 Rxd7 14.Rd1 Qe6 15.Bxd7+ Nxd7 16.Qb8+ Nxb8 17.Rd8# 1-0`;
+
+  useEffect(() => {
+    const fetchPgn = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/pgn/`, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+          },
+        });
+        // setGames(response.data);
+        filterGames(response.data)
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchPgn();
+  }, [id]);
+
+  const filterGames=(games)=>{
+    const game = games.find((game) => game.id == Number(id));
+    
+    if (game) {
+      setPgn(game.pgn);
+    } else {
+      setPgn(defaultPgn);
+    }
+  }
+//   useEffect(() => {
+//     const game = games.find((game) => game.id == Number(id));
+//     debugger
+//     if (game) {
+//       setPgn(game.pgn);
+//     } else {
+//       setPgn(defaultPgn);
+//     }
+//   }, [id]);
+
+  return pgn ? <PGNViewer>{pgn}</PGNViewer> : null;
+};
+
 export default PgnLoader;

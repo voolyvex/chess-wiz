@@ -1,12 +1,39 @@
 .container {
-  display: block;
-  grid-auto-flow: row;
-  justify-content: center;
-  width: fit-content;
+  display: flex;
+  
+  width: 100%;
 }
 
-.board-container {
+.outer-board-container {
+  display: block;
+  position: fixed;
+  width: calc(100% - 2800px); /* adjust this value as needed */
+  /* 600px is the total width of the game feed containers */
+  /* You may also want to adjust the padding and margin of the containers */
   margin: auto;
+  
+}
+#board-matte {
+  display: block;
+  width: 624px;
+  height: fit-content auto 800px;
+  background-color: rgb(197, 174, 134, .3);
+  margin: auto;
+}
+#id.boardTopHeader {
+  font-style: italic;
+  text-align: left;
+}
+.board-container {
+  border: 2px hidden grey;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.15);
+  width: 1000px;
+  padding: 5px 0 25px;
+  min-height: fit-content;
+  height: 840px;
+  max-height: 900px;
+  margin: 30px 30px; /* adjust this value as needed */
 }
 
 #fade-out {
@@ -64,3 +91,4 @@
         opacity: 0;
       }
 }
+

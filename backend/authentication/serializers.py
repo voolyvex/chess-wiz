@@ -14,10 +14,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         token["username"] = user.username
         token["first_name"] = user.first_name
-        token["last_name"] = user.last_name        
+        token["last_name"] = user.last_name
         token["is_student"] = user.is_student
         token["is_coach"] = user.is_coach
-        token["my_games"] = user.my_games
+        # token["my_games"] = user.my_games
+        # token["favorites"] = user.favorites
+        # token["assigned"] = user.assigned
 
         return token
 
@@ -34,7 +36,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # If added new columns through the User model, add them in the fields
         # list as seen below
         fields = ('username', 'password', 'email',
-                  'first_name', 'last_name', 'is_student', 'is_coach', 'my_games')
+                  'first_name', 'last_name', 'is_student', 'is_coach', 'my_games', 'favorites', 'assigned')
 
     def create(self, validated_data):
 
@@ -45,7 +47,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
             last_name=validated_data['last_name'],
             is_student=validated_data['is_student'],
             is_coach=validated_data['is_coach'],
-            my_games=validated_data['my_games']
+            my_games=validated_data['my_games'],
+            favorites=validated_data['favorites'],
+            assigned=validated_data['assigned']
 
             # If added new columns through the User model, add them in this
             # create method. Example below:
@@ -57,12 +61,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
         return user
 
-# Add a new Serializer for User to Pgn Relationship my_games
 
+# Add a new Serializer for junction tables
 class UserPgnSerializer(serializers.ModelSerializer):
-    # users = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=True)
 
     class Meta:
         model = User
-        fields = ('my_games',)
-        
+        fields = ('my_games', 'favorites', 'assigned')

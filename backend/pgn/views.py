@@ -29,13 +29,54 @@ class PgnList(APIView):
 
 
 class FetchMyGames(APIView):
-# Get all games of a user
+# Get all mygames of a user
 
     @permission_classes([IsAuthenticated])
     def get(self, request):
-        all_my_games = Pgn.objects.filter(user=request.user.id)
-        serializer = PgnSerializer(all_my_games, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        pgns=[]
+        user = User.objects.get(id=request.user.id)
+        user_serializer = UserPgnSerializer(user)
+  
+        for pgn in user_serializer.data['my_games']:
+            real_PGN = Pgn.objects.get(id=pgn)
+            pgn_serializer=PgnSerializer(real_PGN)
+            pgns.append(pgn_serializer.data)
+        
+        return Response(pgns, status=status.HTTP_200_OK)
+
+
+class FetchFavorites(APIView):
+# Get all favorites of a user
+
+    @permission_classes([IsAuthenticated])
+    def get(self, request):
+        pgns=[]
+        user = User.objects.get(id=request.user.id)
+        user_serializer = UserPgnSerializer(user)
+  
+        for pgn in user_serializer.data['favorites']:
+            real_PGN = Pgn.objects.get(id=pgn)
+            pgn_serializer=PgnSerializer(real_PGN)
+            pgns.append(pgn_serializer.data)
+        
+        return Response(pgns, status=status.HTTP_200_OK)
+
+
+class FetchAssigned(APIView):
+# Get all assigned games of a user
+
+    @permission_classes([IsAuthenticated])
+    def get(self, request):
+        pgns=[]
+        user = User.objects.get(id=request.user.id)
+        user_serializer = UserPgnSerializer(user)
+  
+        for pgn in user_serializer.data['assigned']:
+            real_PGN = Pgn.objects.get(id=pgn)
+            pgn_serializer=PgnSerializer(real_PGN)
+            pgns.append(pgn_serializer.data)
+        
+        return Response(pgns, status=status.HTTP_200_OK)
 
 
 class AddPgnToMyGames(APIView):
@@ -53,8 +94,38 @@ class AddPgnToMyGames(APIView):
         user.save()
         serializer = UserPgnSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
-        
+    
+class AddPgnToFavorites(APIView):
+# Record in junction table for Favorites
 
+    @permission_classes([IsAuthenticated])
+    def patch(self, request, pgn_pk):
+        try:
+            user = User.objects.get(id=request.user.id)
+            pgn = Pgn.objects.get(id=pgn_pk)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        user.favorites.add(pgn)
+        user.save()
+        serializer = UserPgnSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
+class AddPgnToAssigned(APIView):
+    # Record in junction table for Assigned
+
+    @permission_classes([IsAuthenticated])
+    def patch(self, request, pgn_pk):
+        try:
+            user = User.objects.get(id=request.user.id)
+            pgn = Pgn.objects.get(id=pgn_pk)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        user.assigned.add(pgn)
+        user.save()
+        serializer = UserPgnSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 # class PgnDetail(APIView):

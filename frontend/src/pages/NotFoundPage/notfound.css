@@ -1,0 +1,10 @@
+#centered {
+    width: 100%;
+    align-items: center;
+    line-height: 5em;
+    padding: 3em;
+    margin: 1em;
+    text-align: center;
+    gap: 1em;
+
+}

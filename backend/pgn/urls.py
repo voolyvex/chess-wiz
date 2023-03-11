@@ -1,14 +1,15 @@
 from django.urls import path
 from . import views
 
-# <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 urlpatterns = [
-    # path('pgn/train/', views.user_assigned_pgn),
-    # path('pgn/faves', views.user_favorite_pgn),
+
     path('', views.PgnList.as_view()),
     path('mygames/', views.FetchMyGames.as_view()),
-    path('mygames/<int:pgn_pk>/', views.AddPgnToMyGames.as_view())
+    path('mygames/<int:pgn_pk>/', views.AddPgnToMyGames.as_view()),
+    path('favorites/', views.FetchFavorites.as_view()),
+    path('favorites/<int:pgn_pk>/', views.AddPgnToFavorites.as_view()),
+    path('assigned/', views.FetchAssigned.as_view()),
+    path('assigned/<int:pgn_pk>/', views.AddPgnToAssigned.as_view())
     
-
 ]

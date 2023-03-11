@@ -1,13 +1,13 @@
 import React from 'react';
-import useAuth from '../../hooks/useAuth';
+import GameFeedPresenter from './GameFeedPresenter';
+import GameCardMaker from './GameCardMaker';
 
-const GameFeedMapper = (props) => {
-    const { user } = useAuth();
+const GameFeedMapper = ({ games }) => {
+  const gameFeed = games.map((game) => (
+    <GameCardMaker key={game.id} id={game.id} pgnText={game.pgn} />
+  ));
 
-    return (
-        <div>
+  return <GameFeedPresenter gameFeed={gameFeed} />;
+};
 
-        </div>
-    )
-}
 export default GameFeedMapper;

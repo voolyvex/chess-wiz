@@ -1,9 +1,8 @@
 import React from 'react';
+import './gamefeed.css';
 
-const GameFeedPresenter = (props) => {
+const GameFeedPresenter = ({ gameFeed }) => {
+  return <div className='game-card-container'>{gameFeed}</div>;
+};
 
-    return (
-        <div></div>
-    )
-}
 export default GameFeedPresenter;
