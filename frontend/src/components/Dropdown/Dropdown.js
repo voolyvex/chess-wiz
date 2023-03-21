@@ -10,9 +10,9 @@ const Icon = () => {
 };
 
 
-const Dropdown = ({ placeHolder, options }) => {
+const Dropdown = ({ placeHolder, options, selectedValue, setSelectedValue}) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
+  // const [selectedValue, setSelectedValue] = useState(null);
 
   useEffect(() => {
     const handler = () => setShowMenu(false);
@@ -27,25 +27,27 @@ const Dropdown = ({ placeHolder, options }) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
-
+  
   const getDisplay = () => {
     if (selectedValue) {
-        return selectedValue.label;
+      return selectedValue.label;
     }
     return placeHolder;
   };
-
+  
   const onItemClick = (option) => {
+    // console.log(option.target.innerHTML);
     setSelectedValue(option);
   };
-
+  
   const isSelected = (option) => {
     if (!selectedValue) {
-        return false;
+      return false;
     }
     return selectedValue.value === option.value;
   }
-
+  
+  console.log(selectedValue)
   return (
     <div className="dropdown-container">
       <div onClick={handleInputClick} className="dropdown-input">
@@ -62,6 +64,7 @@ const Dropdown = ({ placeHolder, options }) => {
                 onClick={() => onItemClick(option)} 
                 key={option.value} 
                 className={`dropdown-item ${isSelected(option) && "selected"}`}
+                
               >
                 {option.label}
               </div>

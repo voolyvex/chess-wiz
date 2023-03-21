@@ -5,29 +5,29 @@ import Dropdown from '../Dropdown/Dropdown';
 import './Save.css'
 import '../Dropdown/Dropdown.css'
 
+
 const SavePgnToDatabase = ({ headers, pgn }) => {
 
     const [PGN, setPGN] = useState(pgn);
     const [saveLocation, setSaveLocation] = useState('');
+    const [selectedValue, setSelectedValue] = useState({value:''});
 
-    useEffect(() => {
-        setPGN(pgn)
-    }, [pgn]);
-
+    
     const postPGN = async () => {
         let pgn = { "pgn": PGN }
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
-            console.log(response.data.id)
-            // assuming the response contains the pgn id
-            const pgnId = response.data.id;
-            patchPGN(saveLocation, pgnId);
+            const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } }).then(function (response) {
+                const pgnId = response.data.id
+                patchPGN(saveLocation, pgnId);
+            }
+            
+            );
         } catch (error) {
             console.log(error.message)
         }
     };
-
-    const patchPGN = async (saveLocation, pgnId) => {
+    
+    async function patchPGN(saveLocation, pgnId) {
         try {
             const response = await axios.patch(`http://127.0.0.1:8000/api/pgn/${saveLocation}/${pgnId}/`, {}, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
             console.log(response.data)
@@ -35,22 +35,26 @@ const SavePgnToDatabase = ({ headers, pgn }) => {
             console.log(error.message)
         }
     };
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         postPGN();
     }
-
-    const handleLocationChange = (selectedOption) => {
-        setSaveLocation(selectedOption.value);
-    };
-
+    
     const options = [
         { value: "my_games", label: "My Games" },
         { value: "favorites", label: "Favorites" },
         { value: "assigned", label: "Assigned" }
     ];
 
+    useEffect(() => {
+        setPGN(pgn)
+    }, [pgn]);
+    
+    useEffect(() => {
+        setSaveLocation(selectedValue.value);
+    }, [selectedValue]);
+    
     return (
         <div className='form-container'>
             <form className="save-form" spellCheck="false" onSubmit={handleSubmit}>
@@ -68,7 +72,7 @@ const SavePgnToDatabase = ({ headers, pgn }) => {
                 </label>
             </form>
             <div className="save-dropdown">
-                <Dropdown placeHolder="Select..." options={options} onChange={handleLocationChange} />
+                <Dropdown placeHolder="Select..." options={options}  selectedValue={selectedValue} setSelectedValue={setSelectedValue}/>
             </div>
         </div>
     )

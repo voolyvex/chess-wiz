@@ -1,6 +1,6 @@
 import SavePgnToDatabase from "../../components/SavePgnToDatabase/SavePgnToDatabase";
 import "../PlayPage/Play.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 import useAuth from "../../hooks/useAuth";
@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 function AnalyzePage() {
   const [game, setGame] = useState(new Chess());
   const [user] = useAuth();
- 
+
   // Perform a function on the game state
 
   function safeGameMutate(modify) {
