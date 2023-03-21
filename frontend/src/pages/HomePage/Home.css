@@ -1,39 +1,53 @@
-.container {
-  display: flex;
-  
-  width: 100%;
+.search-feed-container {
+  margin-right: 1rem;
+  min-height: 100vh;
+  height: max-content;
+  max-height: 200vh;
+  flex: 0;
+  width: 10rem;
 }
 
-.outer-board-container {
+.board-feed-container {
   display: block;
-  position: fixed;
-  width: calc(100% - 2800px); /* adjust this value as needed */
-  /* 600px is the total width of the game feed containers */
-  /* You may also want to adjust the padding and margin of the containers */
-  margin: auto;
+  width: 100%;
+  flex: 1;
+  text-align: left;
+  margin-inline: 4rem;
+}
+.outer-board-container {
   
+  position: fixed;
+  width: fit-content;
+  margin:  0 auto;
+  justify-content: center;
+}
+h1.welcome {
+  margin-inline: auto;
+  width: 600px;
+  text-align: center;
 }
 #board-matte {
+  width: fit-content;
   display: block;
-  width: 624px;
-  height: fit-content auto 800px;
+  /* width: 624px; */
+  height: fit-content;
   background-color: rgb(197, 174, 134, .3);
   margin: auto;
+  justify-content: center;
 }
-#id.boardTopHeader {
-  font-style: italic;
-  text-align: left;
-}
+
 .board-container {
+  width: 800px;
   border: 2px hidden grey;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.15);
-  width: 1000px;
+  /* width: 1000px; */
   padding: 5px 0 25px;
   min-height: fit-content;
   height: 840px;
-  max-height: 900px;
-  margin: 30px 30px; /* adjust this value as needed */
+  max-height: 1400px;
+  margin: auto;
+  justify-items: stretch;
 }
 
 #fade-out {

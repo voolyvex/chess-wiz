@@ -60,18 +60,28 @@ html, body {
   max-height: 3800;
 }
 main {
+  display: flex;
+  
+  width:100%;
   min-height: 100vh;
   margin: 0 auto;
   margin-top: -16px; /* adjust this value according to the height of your footer */
 }
-
+article {
+  font-family: inherit;
+  text-align: justify;
+}
 body {
   margin: 0 auto;
   padding-bottom: 3rem;
-  position:relative;
+  position: relative;
   height: 100%;
 }
-
+section {
+  max-width: fit-content;
+  width: 100%;
+  margin-inline: 2rem;
+}
 h1 {
   color: white;
   opacity: 94%;

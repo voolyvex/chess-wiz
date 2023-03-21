@@ -46,6 +46,12 @@
   line-height: 1.5;
 }
 
+.about-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
 .titles h1 {
   font-size: 3rem;
@@ -83,13 +89,6 @@
   #about-about {
     font-size: 1rem;
   }
-}
-a.about {
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-  padding-top: 1.5rem;
-
 }
 
 .gear-icon {

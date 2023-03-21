@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import ThirdPartyMapper from "../../components/GameFeed/ThirdPartyMapper";
 import SearchForm from "../../components/SearchForm/SearchForm";
+import "../../components/GameFeed/gamefeed.css"
 
 const SearchPage = (props) => {
   const [games, setGames] = useState([]);
@@ -27,7 +28,7 @@ const SearchPage = (props) => {
 
   return (
     <div className="search-page">
-      <h1 className="feed-title">Search</h1>
+      <h3 className="searchfeed-title">Search</h3>
       <h1>Chess.com Players</h1>
       <SearchForm handleSearch={getPgnByPlayer} />
       <div id="game-feed">

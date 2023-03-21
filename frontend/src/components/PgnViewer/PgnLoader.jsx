@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import PGNViewer from './PgnViewer';
 import axios from 'axios';
 
+
 const PgnLoader = ({ pgns }) => {
   const { id } = useParams();
   const [pgn, setPgn] = useState('');
 
-  const defaultPgn = `[Event "Paris"]
+  const defaultPgn =
+  `[Event "Paris"]
   [Site "Paris FRA"]
   [Date "1858.??.??"]
   [EventDate "?"]

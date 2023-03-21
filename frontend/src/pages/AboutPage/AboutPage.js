@@ -7,8 +7,11 @@ const AboutPage = () => {
     <div className="about-container">
       <div className="about-text">
         <div className="titles">
-          <h1 className="fade-in">A cloud-based</h1> <h1 className="delay1 fade-in">platform</h1>
-          <h1 className="delay2 fade-in"><i>geared</i></h1>
+          <h1 className="fade-in">A cloud-based</h1>{" "}
+          <h1 className="delay1 fade-in">platform</h1>
+          <h1 className="delay2 fade-in">
+            <i>geared</i>
+          </h1>
           <h1 className="delay3 fade-in">for</h1>
           <div className="stage">
             <div className="brain bounce-7">
@@ -19,16 +22,16 @@ const AboutPage = () => {
               />
             </div>
           </div>
-              <h1 className="delay3 fade-in">chess students</h1>
+          <h1 className="delay3 fade-in">chess students</h1>
           <h1 className="delay4 fade-in">and their coaches...</h1>
         </div>
         <p id="about-about">
           Welcome to ChessWiz, the ultimate chess app for both students and
-          coaches! <i>Dad jokes aside</i>, our app is designed to help you improve your game, whether
-          you're a beginner or a seasoned player. With a Django backend, REST
-          API endpoints, and a React frontend, our fullstack application
-          provides a seamless user experience that's both intuitive and easy to
-          use.
+          coaches! <i>Dad jokes aside</i>, our app is designed to help you
+          improve your game, whether you're a beginner or a seasoned player.
+          With a Django backend, REST API endpoints, and a React frontend, our
+          fullstack application provides a seamless user experience that's both
+          intuitive and easy to use.
         </p>
         <p id="about-about">
           For students of chess, ChessWiz offers a variety of features to help
@@ -75,12 +78,14 @@ const AboutPage = () => {
           supports variations, annotations, and other PGN features, making it a
           versatile tool for both learning and analyzing chess games.
         </p>
-        <a className="about" href="url_to_register_page">
-          <button>Register Today</button>
-        </a>
-        <a className="about" href="url_to_register_page">
-          <button>Register Today</button>
-        </a>
+        <div className="about-cta">
+          <a href="/login">
+            <button>Login!</button>
+          </a>
+          <a href="/register">
+            <button>Create Account!</button>
+          </a>
+        </div>
       </div>
     </div>
   );

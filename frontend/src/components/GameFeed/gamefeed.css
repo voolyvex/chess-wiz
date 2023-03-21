@@ -1,50 +1,77 @@
 .outer-feeds-container {
-    display: flex;
-    float: right;
-    width: 1200px;
-    /* adjust this value as needed */
-    /* You may also want to adjust the padding and margin of the containers */
-    position: absolute;
+  display: inline-flex;
+  min-width: 800px;
+  width: 800px;
+  max-width: auto;
+  flex: 1;
+  position: relative;
+  margin-inline-start: 3rem;
+  justify-content: right;
 }
 .feed-title {
   color: rgb(215, 117, 68);
-}
-.search-page {
-  height: inherit;
+  text-align: center;
 }
 
-  #game-feed-container {
-    width: 300px;
-    margin: 0 20px; /* adjust this value as needed */
-    padding-left: 10px;
-  }
+.search-page {
   
-  #game-feed {
-    color: orange;
-    list-style: none;
-  }
+  width: 300px;
   
-  .game-card-container {
-    margin: auto;
-    background: rgb(45, 45, 45, .1);
-    padding: 1rem;
-    box-sizing: border-box;
-  }
+}
+.search-page input#month {
+  width: 3rem;
+  padding: 1px;
+  text-align: center;
+}
+.search-page input#year {
+  width: 4rem;
+  padding: 1px;
+  text-align: center;
+}
+.search-page input#username { 
+  width: 9rem;
+  padding: 1px;
+  text-align: center;
+
+}
+
+#game-feed-container {
+  width: 300px;
+  margin: 0 1rem; /* adjust this value as needed */
+  padding: 1rem;
+  border: 1px solid rgb(215, 215, 215, 0.25);
+}
+
+#game-feed {
+  color: orange;
+  list-style: none;
+}
+
+.game-card-container {
   
-  .game-card {
-    margin: auto;
-  }
-  
-  #gheader {
-    padding: 2rem;
-    text-align: justify;
-    font-size: medium;
-    text-decoration: none;
-    list-style: none;
-  }
-  
-  #gmoves {
-    text-decoration: solid;
-    color: lightsalmon;
-  }
-  
+  background: rgb(45, 45, 45, 0.1);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.game-card {
+  margin: auto;
+  text-align: justify;
+  list-style: none;
+  text-decoration: none;
+  width: 100%;
+}
+
+#gheader {
+  padding: auto;
+  text-align: justify;
+  font-size: medium;
+  text-decoration: none;
+  list-style: none;
+}
+
+#gmoves {
+  text-decoration: none;
+  color: lightsalmon;
+  list-style: none;
+}

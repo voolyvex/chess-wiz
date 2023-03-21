@@ -43,7 +43,6 @@ const Dropdown = ({ placeHolder, options }) => {
     if (!selectedValue) {
         return false;
     }
-
     return selectedValue.value === option.value;
   }
 

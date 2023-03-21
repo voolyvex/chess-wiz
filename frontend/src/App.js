@@ -27,7 +27,7 @@ function App() {
   return (
     <div id="app">
       <Navbar />
-      <main>
+      
         <Routes>
           <Route
             exact path="/"
@@ -37,10 +37,10 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/pgnloader/:id" element={<PgnLoader />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/pgnloader/:id" element={<PgnLoader />} />
           <Route
             path="/search"
             element={
@@ -91,7 +91,7 @@ function App() {
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </main>
+      
 
       <Footer />
     </div>

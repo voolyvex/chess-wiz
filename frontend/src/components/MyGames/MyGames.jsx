@@ -27,7 +27,9 @@ const MyGames = (props) => {
 
     return (
         <div id='game-feed'>
-
+            <h3 className='feed-title'>
+                My Games
+            </h3>
             <GameFeedMapper games={games} />
 
         </div>
