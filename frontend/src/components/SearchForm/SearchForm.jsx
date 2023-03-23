@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 
 
 
-const SearchForm = ({ handleSearch }) => {
-  const [username, setUsername] = useState("MagnusCarlsen");
-  const [year, setYear] = useState("2023");
-  const [month, setMonth] = useState("02");
+const SearchForm = ({ handleSearch, username, setUsername, year, setYear, month, setMonth }) => {
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

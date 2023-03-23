@@ -22,76 +22,32 @@ import PgnLoader from "./components/PgnViewer/PgnLoader";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import PGNViewer from "./components/PgnViewer/PgnViewer";
 
 function App() {
   return (
     <div id="app">
       <Navbar />
-      
-        <Routes>
-          <Route
-            exact path="/"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/pgnloader/:id" element={<PgnLoader />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route
-            path="/search"
-            element={
-              <PrivateRoute>
-                <SearchPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/analyze"
-            element={
-              <PrivateRoute>
-                <AnalyzePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/play"
-            element={
-              <PrivateRoute>
-                <PlayPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/mygames"
-            element={
-              <PrivateRoute>
-                <MyGames />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/assigned"
-            element={
-              <PrivateRoute>
-                <Assigned />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/favorites"
-            element={
-              <PrivateRoute>
-                <Favorites />
-              </PrivateRoute>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      
+
+      <Routes>
+        <Route exact path="/" element={<HomePage />}></Route>
+        <Route element={<PrivateRoute />}>
+          <Route exact path="/search" element={<SearchPage />} />
+          <Route exact path="/mygames" element={<MyGames />} />
+          <Route exact path="/assigned" element={<Assigned />} />
+          <Route exact path="/favorites" element={<Favorites />} />
+          <Route path="/analyze" element={<AnalyzePage />} />
+          <Route path="/play" element={<PlayPage />} />
+
+          <Route path="/:id" element={<HomePage />} />
+          
+        </Route>
+
+        <Route exact path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
       <Footer />
     </div>

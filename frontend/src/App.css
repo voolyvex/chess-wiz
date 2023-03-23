@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 :root {
+  --bleu: #327ceb;
   --gradient:
   linear-gradient(to bottom, black, transparent, transparent, black),
   linear-gradient(to bottom, transparent, transparent, black, transparent, transparent, rgb(39, 38, 38)),
@@ -93,8 +94,8 @@ p {
 
 button {
   background-color: transparent;
-  color: #327ceb;
-  border: 2px solid #327ceb;
+  color: var(--bleu);
+  border: 2px solid var(--bleu);
   border-radius: 2px;
   font-size: 1rem;
   font-family: inherit;
@@ -106,7 +107,7 @@ button {
 button:hover {
   cursor: pointer;
   color: white;
-  background-color: #327ceb;
+  background-color: var(--bleu);
   opacity: 95%;
 }
 

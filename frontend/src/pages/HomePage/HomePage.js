@@ -14,37 +14,34 @@ const HomePage = () => {
   return (
     <main>
       <section>
-      <div id="search-feed-container">
-        <SearchPage />
-      </div>
+        <div id="search-feed-container">
+          <SearchPage />
+        </div>
       </section>
       <section>
-      <div id="game-feed-container">
-        <MyGames />
-      </div>
-
+        <div id="game-feed-container">
+          <MyGames />
+        </div>
       </section>
-      <section>
+      <section className="center-section">
         <div id="fade-out">
           <h1 className="welcome">Welcome back, {user.username}!</h1>
         </div>
-      <div className="board-feed-container">
-        <div className="outer-board-container">
-          <PgnLoader />
+        <div className="board-feed-container">
+          <div className="outer-board-container">
+            <PgnLoader />
+          </div>
         </div>
-      </div>
-
       </section>
       <section>
-
-      <div className="outer-feeds-container">
-        <div id="game-feed-container">
-          <Favorites />
+        <div className="outer-feeds-container">
+          <div id="game-feed-container">
+            <Favorites />
+          </div>
+          <div id="game-feed-container">
+            <Assigned />
+          </div>
         </div>
-        <div id="game-feed-container">
-          <Assigned />
-        </div>
-      </div>
       </section>
     </main>
   );

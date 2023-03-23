@@ -1,3 +1,8 @@
+h1.welcome {
+  margin-inline: auto;
+  width: 600px;
+  text-align: center;
+}
 .search-feed-container {
   margin-right: 1rem;
   min-height: 100vh;
@@ -15,19 +20,15 @@
   margin-inline: 4rem;
 }
 .outer-board-container {
-  
   position: fixed;
-  width: fit-content;
-  margin:  0 auto;
-  justify-content: center;
 }
-h1.welcome {
-  margin-inline: auto;
-  width: 600px;
-  text-align: center;
+.outerBoard {
+  margin: 0 auto;
+  align-items: center;
+  
 }
 #board-matte {
-  width: fit-content;
+  width: 645px;
   display: block;
   /* width: 624px; */
   height: fit-content;
@@ -35,14 +36,54 @@ h1.welcome {
   margin: auto;
   justify-content: center;
 }
+.layout-top {
+  justify-content: center;
+}
 
+.whiteHeader {
+  margin: 1.2rem;
+  text-align: right;
+  font-weight: 500;
+  font-kerning: none;
+  font-family: Helvetica, sans-serif;
+  padding-top: 1.5rem;
+  color: rgb(255, 255, 255);
+  text-shadow: 4px 0px 20px rgb(132, 132, 132);
+  text-decoration: underline;
+}
+.blackHeader {
+  text-align: left;
+  font-kerning: none;
+  font-weight: bold;
+  position: relative;
+  margin-bottom: .5rem;
+  color: rgb(0, 0, 0);
+  text-shadow: 2px 0px 10px rgb(116, 116, 116);
+  text-decoration: underline;
+  
+}
+.buttons {
+  margin-block-start: 1.5rem;
+  width: 100%;
+  
+}
+.moves.inline {
+  background: rgb(236, 236, 236, .92);
+  margin-block-start: 1rem;
+  padding: 12px;
+  
+  text-align: left;
+}
+.boardAnd {
+  font-family: 'Helvetica', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 1px;
+}
 .board-container {
-  width: 800px;
+  
   border: 2px hidden grey;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.15);
-  /* width: 1000px; */
-  padding: 5px 0 25px;
+  
+  padding-inline-start: 3rem;
   min-height: fit-content;
   height: 840px;
   max-height: 1400px;
@@ -50,7 +91,7 @@ h1.welcome {
   justify-items: stretch;
 }
 
-#fade-out {
+.center-section #fade-out {
   animation: fade-out 5s 1;
   -webkit-animation: fade-out 5s 1;
   -moz-animation: fade-out 5s 1;
