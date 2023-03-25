@@ -3,7 +3,7 @@
   min-width: 800px;
   width: 800px;
   max-width: auto;
-  flex: 1;
+  
   position: relative;
   margin-inline-start: 3rem;
   justify-content: right;
@@ -12,7 +12,16 @@
   color: rgb(215, 117, 68);
   text-align: center;
 }
-
+.left-outer-feeds-container {
+  display: inline-flex;
+  min-width: 700px;
+  width: 700px;
+  max-width: auto;
+  
+  position: relative;
+  margin-inline-end: 3rem;
+  justify-content: left;
+}
 .search-page {
   width: 300px;
 }
@@ -108,27 +117,49 @@
   
 }
 .heart-moves {
-  display: flex;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-
+.button-container {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+}
+#heart-icon svg{
+  color: rgb(243, 76, 103);
+  
+}
 #heart-icon {
-  width: fit-content;
+  opacity: .8;
   border-style: none;
+  position: absolute;
+  top: -230%;
+  left: -100%;
+}
+#heart-icon:hover {
+  border-style: none;
+  opacity: 1;
+  
+  background: transparent;
 }
 #gheader {
   columns: 2;
   padding: 1px;
   text-align: left;
   font-size: smaller;
- 
-
-  
 }
 
+.gmoves-container {
+  padding-inline-start: 2rem;
+  flex-wrap: wrap;
+  
+}
 #gmoves {
-  margin-inline-start: .5rem;
+  position: relative;
   text-decoration: none;
   color: var(--bleu);
   list-style: none;
   opacity: 90%;
+  
 }

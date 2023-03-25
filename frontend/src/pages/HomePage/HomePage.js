@@ -14,19 +14,21 @@ const HomePage = () => {
   return (
     <main>
       <section>
-        <div id="search-feed-container">
-          <SearchPage />
-        </div>
-      </section>
-      <section>
-        <div id="game-feed-container">
-          <MyGames />
+        <div className="left-outer-feeds-container">
+          <div id="search-feed-container">
+            <SearchPage />
+          </div>
+
+          <div id="game-feed-container">
+            <MyGames />
+          </div>
         </div>
       </section>
       <section className="center-section">
+        {user ?
         <div id="fade-out">
           <h1 className="welcome">Welcome back, {user.username}!</h1>
-        </div>
+        </div> : null}
         <div className="board-feed-container">
           <div className="outer-board-container">
             <PgnLoader />

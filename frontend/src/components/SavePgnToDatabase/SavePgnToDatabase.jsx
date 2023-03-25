@@ -12,6 +12,11 @@ const SavePgnToDatabase = ({ headers, pgn }) => {
     const [saveLocation, setSaveLocation] = useState('');
     const [selectedValue, setSelectedValue] = useState({value:''});
 
+    const options = [
+        { value: "my_games", label: "My Games" },
+        { value: "favorites", label: "Favorites" },
+        { value: "assigned", label: "Assigned" }
+    ];
     
     const postPGN = async () => {
         let pgn = { "pgn": PGN }
@@ -41,11 +46,6 @@ const SavePgnToDatabase = ({ headers, pgn }) => {
         postPGN();
     }
     
-    const options = [
-        { value: "my_games", label: "My Games" },
-        { value: "favorites", label: "Favorites" },
-        { value: "assigned", label: "Assigned" }
-    ];
 
     useEffect(() => {
         setPGN(pgn)

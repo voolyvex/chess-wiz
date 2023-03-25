@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './gamefeed.css';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import axios from 'axios';
 
-const GameCardMaker = ({ id, pgnText }) => {
 
-  const [fav, setFav] = useState(false);
+const GameCardMaker = ({ id, pgnText, isFavorite }) => {
 
-  const handleClick = (event) => {
+
+//first get the pgn
+  // async function getPGNbyID(id)
+
+  async function patchPGN(pgnId) {
+    try {
+      const response = await axios.patch(`http://127.0.0.1:8000/api/pgn/favorites/${pgnId}/`, {}, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
+      console.log(response.data)
+    } catch (error) {
+      console.log(error.message)
+    }
+  };
+
+
+  const handleClick = async (event) => {
     event.preventDefault();
     event.stopPropagation();
-    setFav((favState) => !favState);
-
-  }
+    patchPGN(id);
+  };
 
 
   // format the raw PGN data
@@ -26,16 +39,22 @@ const GameCardMaker = ({ id, pgnText }) => {
   const regex = /\[(\w+)\s+"([^"]+)"\]/g;
   const formattedHeaders = gameHeaders.map(header => header.replace(regex, '$1: $2\n')).join('');
 
+
   // create game card to be rendered
   return (
     <Link key={id} to={`/${id}`} className="link" replace="true">
       <div className='game-card'>
         <p id='gheader'>{formattedHeaders}</p>
         <div className='heart-moves'>
-          <button id='heart-icon' onClick={handleClick}>
-            {fav ? <FaHeart/> : <FaRegHeart/>}
-          </button>
-          <p id='gmoves'>{gameMovesPreview}</p>
+          <div className='button-container'>
+            <button id='heart-icon' onClick={handleClick}>
+              {isFavorite ? <FaHeart /> : <FaRegHeart />}
+            </button>
+          </div>
+          <div className='gmoves-container'>
+            <p id='gmoves'>{gameMovesPreview}</p>
+
+          </div>
         </div>
       </div>
     </Link>

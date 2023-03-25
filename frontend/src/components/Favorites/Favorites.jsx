@@ -15,14 +15,19 @@ const Favorites = (props) => {
             try {
                 let response = await axios
                     .get(`http://127.0.0.1:8000/api/pgn/favorites/`, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
+                // const data = response.data.map((pgn) => {
+                //         pgn.is_favorite = true;
+                //         return pgn;
+                //       });
                 setGames(response.data);
-
+                console.log(response)
             } catch (error) {
                 console.log(error.message)
             }
         };
 
         getAllFavorites()
+        
     }, []);
 
     return (

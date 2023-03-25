@@ -15,6 +15,7 @@ const MyGames = (props) => {
             try {
                 let response = await axios
                     .get(`http://127.0.0.1:8000/api/pgn/mygames/`, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
+
                 setGames(response.data);
 
             } catch (error) {

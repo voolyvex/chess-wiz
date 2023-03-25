@@ -4,7 +4,7 @@ import GameCardMaker from './GameCardMaker';
 
 const GameFeedMapper = ({ games }) => {
   const gameFeed = games.map((game) => (
-    <GameCardMaker key={game.id} id={game.id} pgnText={game.pgn} />
+    <GameCardMaker key={game.id} id={game.id} pgnText={game.pgn} isFavorite={game.is_favorite}/>
   ));
 
   return <GameFeedPresenter gameFeed={gameFeed} />;

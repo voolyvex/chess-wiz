@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import PGNViewer from './PgnViewer';
 import axios from 'axios';
-import { parse, stringify } from 'uuid';
+import CoachAssignPGN from '../CoachAssign/CoachAssign';
 
 
 const PgnLoader = ({ pgns }) => {
@@ -10,7 +10,7 @@ const PgnLoader = ({ pgns }) => {
   const [pgn, setPgn] = useState('');
 
   const location = useLocation();
-
+  
 
   const defaultPgn =
     `[Event "Paris"]
@@ -35,6 +35,7 @@ const PgnLoader = ({ pgns }) => {
   }
 
   useEffect(() => {
+    let id;
     if (!idChecker(id)) {
       const fetchPgn = async () => {
         try {
@@ -66,24 +67,18 @@ const PgnLoader = ({ pgns }) => {
 
   const filterGames = (games) => {
     const game = games.find((game) => game.id == Number(id));
-
+    
     if (game) {
       setPgn(game.pgn);
     } else {
       setPgn(defaultPgn);
     }
   }
-  //   useEffect(() => {
-  //     const game = games.find((game) => game.id == Number(id));
-  //     debugger
-  //     if (game) {
-  //       setPgn(game.pgn);
-  //     } else {
-  //       setPgn(defaultPgn);
-  //     }
-  //   }, [id]);
-  console.log(pgn)
-  return pgn ? <PGNViewer>{pgn}</PGNViewer> : null;
+
+  return <>
+    <CoachAssignPGN pgn={pgn}/>
+    <PGNViewer>{pgn}</PGNViewer>
+  </>
 };
 
 export default PgnLoader;
