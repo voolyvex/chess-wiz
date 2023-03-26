@@ -17,9 +17,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token["last_name"] = user.last_name
         token["is_student"] = user.is_student
         token["is_coach"] = user.is_coach
-        # token["my_games"] = user.my_games
-        # token["favorites"] = user.favorites
-        # token["assigned"] = user.assigned
 
         return token
 
@@ -36,7 +33,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # If added new columns through the User model, add them in the fields
         # list as seen below
         fields = ('username', 'password', 'email',
-                  'first_name', 'last_name', 'is_student', 'is_coach', 'my_games', 'favorites', 'assigned', 'favorited')
+                  'first_name', 'last_name', 'is_student', 'is_coach', 'my_games', 'assigned', 'favorited')
 
     def create(self, validated_data):
 
@@ -48,7 +45,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
             is_student=validated_data['is_student'],
             is_coach=validated_data['is_coach'],
             my_games=validated_data['my_games'],
-            favorites=validated_data['favorites'],
             assigned=validated_data['assigned'],
             favorited=validated_data['favorited']
 
@@ -63,12 +59,12 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
-# Add a new Serializer for junction tables
+# serializer for junction tables
 class UserPgnSerializer(serializers.ModelSerializer):
     
 
     class Meta:
         model = User
-        fields = ('my_games', 'favorites', 'assigned', 'is_student', 'username', 'first_name', 'last_name', 'favorited')
+        fields = ('my_games', 'assigned', 'is_student', 'username', 'first_name', 'last_name', 'favorited')
 
     

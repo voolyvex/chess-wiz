@@ -14,7 +14,7 @@ const MyGames = (props) => {
             // fetch games from django backend
             try {
                 let response = await axios
-                    .get(`http://127.0.0.1:8000/api/pgn/mygames/`, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
+                    .get(`http://127.0.0.1:8000/api/pgn/my_games/`, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
 
                 setGames(response.data);
 

@@ -13,5 +13,3 @@ def build_favorited_dict():
             pgn.save()
 
 
-def build_pgnfavorites():
-        for 

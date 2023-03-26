@@ -21,25 +21,24 @@ const SavePgnToDatabase = ({ headers, pgn }) => {
     const postPGN = async () => {
         let pgn = { "pgn": PGN }
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } }).then(function (response) {
-                const pgnId = response.data.id
-                patchPGN(saveLocation, pgnId);
-            }
-            
-            );
+          const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
+          const pgnId = response.data.id
+        //   await new Promise(resolve => setTimeout(resolve, 1000)); // add a 1 second delay
+          await patchPGN(saveLocation, pgnId);
         } catch (error) {
-            console.log(error.message)
+          console.log(error.message)
         }
-    };
-    
-    async function patchPGN(saveLocation, pgnId) {
+      };
+      
+      async function patchPGN(saveLocation, pgnId) {
         try {
-            const response = await axios.patch(`http://127.0.0.1:8000/api/pgn/${saveLocation}/${pgnId}/`, {}, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
-            console.log(response.data)
+          const response = await axios.patch(`http://127.0.0.1:8000/api/pgn/${saveLocation}/${pgnId}/`, {}, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
+          console.log(response.data)
         } catch (error) {
-            console.log(error.message)
+          console.log(error.message)
         }
-    };
+      };
+      
     
     const handleSubmit = (e) => {
         e.preventDefault();

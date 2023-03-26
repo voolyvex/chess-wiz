@@ -6,7 +6,7 @@ from pgn.models import Pgn
 class User(AbstractUser):
     is_student = models.BooleanField('student status', default=False)
     is_coach = models.BooleanField('coach status', default=False)
-    favorites = models.ManyToManyField(Pgn, related_name='user_favorites')
+
     my_games = models.ManyToManyField(Pgn, related_name='user_mygames')
     assigned = models.ManyToManyField(Pgn, related_name='user_assigned')
     favorited = models.ManyToManyField(Pgn, through='PgnFavorites', related_name='favorite_pgns')

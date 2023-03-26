@@ -5,6 +5,7 @@ import '../GameFeed/gamefeed.css'
 
 
 const Favorites = (props) => {
+    
 
     const [games, setGames] = useState([])
 

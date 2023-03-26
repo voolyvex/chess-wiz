@@ -77,7 +77,23 @@ class FetchAssigned(APIView):
 
         return Response(pgns, status=status.HTTP_200_OK)
 
+class AddPgnToAssigned(APIView):
+    # Record in junction table for Assigned
 
+    @permission_classes([IsAuthenticated])
+    def patch(self, request, pgn_pk):
+        try:
+            user = User.objects.get(id=request.user.id)
+            pgn = Pgn.objects.get(id=pgn_pk)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        user.assigned.add(pgn)
+        user.save()
+        serializer = UserPgnSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
 class AddPgnToMyGames(APIView):
     # Record in junction table for MyGames
 
@@ -94,22 +110,6 @@ class AddPgnToMyGames(APIView):
         serializer = UserPgnSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-# class AddPgnToFavorites(APIView):
-# # Record in junction table for Favorites
-
-#     @permission_classes([IsAuthenticated])
-#     def patch(self, request, pgn_pk):
-#         try:
-#             user = User.objects.get(id=request.user.id)
-#             pgn = Pgn.objects.get(id=pgn_pk)
-#         except:
-#             return Response(status=status.HTTP_404_NOT_FOUND)
-
-#         user.favorites.add(pgn)
-#         user.save()
-#         serializer = UserPgnSerializer(user, context={'request': request})
-#         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class RemoveOrAddFavorite(APIView):
 
@@ -159,35 +159,6 @@ class RemoveOrAddFavorite(APIView):
         }
         return Response(response_data, status=status.HTTP_200_OK)
 
-# class RemoveOrAddFavorite(APIView):
-
-#     def flipBool(self, pgn):
-#         pgn.pgnfavorites_set.is_favorite = not pgn.pgnfavorites_set.is_favorite
-
-#     @permission_classes([IsAuthenticated])
-#     def patch(self, request, pgn_pk):
-#         try:
-#             user = User.objects.get(id=request.user.id)
-#             pgn = Pgn.objects.get(id=pgn_pk)
-#         except Pgn.DoesNotExist:
-#             raise Http404("Pgn does not exist")
-#         if PgnFavorites.filter(id=pgn_pk).exists():
-#             # remove the pgn from the junction table
-#             pgn.pgnfavorites.remove(pgn)
-#         else:
-#             # add the pgn to the junction table
-#             PgnFavorites.add(pgn)
-#         self.flipBool(pgn)
-#         pgn.save()
-#         pgn_serialized = PgnSerializer(pgn, partial=True).data
-#         user.save()
-#         user_serialized = UserPgnSerializer(user).data
-#         response_data = {
-#             "user": user_serialized,
-#             "pgn": pgn_serialized
-#         }
-#         return Response(response_data, status=status.HTTP_200_OK)
-
 
 class CoachAssignPGN(APIView):
     # Record in Assigned junction table for specified student id
@@ -223,14 +194,6 @@ class AddPgnToAssigned(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-# class DeletePgn(APIView):
-
-#     # DELETE Pgn from junction table
-#     @permission_classes([IsAuthenticated])
-#     def delete(self, pk):
-#         game = get_object_or_404(Pgn, pk=pk)
-#         game.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class FetchPGNbyId(APIView):
     # GET Pgn by Id

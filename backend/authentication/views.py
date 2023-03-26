@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from .serializers import MyTokenObtainPairSerializer, RegistrationSerializer, UserPgnSerializer
 from rest_framework import generics, status
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -23,7 +23,7 @@ class RegisterView(generics.CreateAPIView):
 class FetchStudents(APIView):
 
     @permission_classes([AllowAny])
-    def get(self, request):
+    def get(self):
         users = User.objects.all()
         serializer = UserPgnSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

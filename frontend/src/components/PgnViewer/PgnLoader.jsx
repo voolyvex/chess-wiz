@@ -35,7 +35,6 @@ const PgnLoader = ({ pgns }) => {
   }
 
   useEffect(() => {
-    let id;
     if (!idChecker(id)) {
       const fetchPgn = async () => {
         try {
