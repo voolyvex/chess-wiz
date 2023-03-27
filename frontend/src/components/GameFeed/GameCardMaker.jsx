@@ -5,7 +5,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import axios from 'axios';
 
 
-const GameCardMaker = ({ id, pgnText }) => {
+const GameCardMaker = ({ id, pgnText, playerWhite, playerBlack, eloWhite, eloBlack, date, eco, moves }) => {
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -36,33 +36,70 @@ const GameCardMaker = ({ id, pgnText }) => {
     patchPGN(id);
   };
 
-  // format the raw PGN data
-  let rawText = pgnText.replace(/\r\n/g, '\n');
-  let splitGame = rawText.split('\n\n');
-  let gameHeaders = splitGame.filter((item, i) => i % 2 === 0);
-  let gameMoves = splitGame.filter((item, i) => i % 2 !== 0);
-  let gameMovesStr = JSON.stringify(gameMoves);
-  let gameMovesNoQuotes = gameMovesStr.replace(/"/g, '').replace('[', '').replace(']', '');
-  let gameMovesPreview = gameMovesNoQuotes.slice(0, 40);
-  const regex = /\[(\w+)\s+"([^"]+)"\]/g;
-  const formattedHeaders = gameHeaders.map(header => header.replace(regex, '$1: $2\n')).join('');
+  // // format the raw PGN data
+  // let rawText = pgnText.replace(/\r\n/g, '\n');
+  // let splitGame = rawText.split('\n\n');
+  // let gameHeaders = splitGame.filter((item, i) => i % 2 === 0);
+  // let gameMoves = splitGame.filter((item, i) => i % 2 !== 0);
+  // let gameMovesStr = JSON.stringify(gameMoves);
+  // let gameMovesNoQuotes = gameMovesStr.replace(/"/g, '').replace('[', '').replace(']', '');
+  // let gameMovesPreview = gameMovesNoQuotes.slice(0, 40);
+  // const regex = /\[(\w+)\s+"([^"]+)"\]/g;
+  // const formattedHeaders = gameHeaders.map(header => header.replace(regex, '$1: $2\n')).join('');
 
   // create game card to be rendered
   return (
     <Link key={id} to={`/${id}`} className="link" replace="true">
-      <div className='game-card'>
-        <p id='gheader'>{formattedHeaders}</p>
-        <div className='heart-moves'>
-          <div className='button-container'>
-            <button type='button' id='heart-icon' onClick={handleClick}>
-              {isFavorite ? <FaHeart /> : <FaRegHeart />}
-            </button>
+      
+        <div className="s-game-card">
+          <hr></hr>
+          <div className='table-div'>
+            <table>
+              <tr>
+                <td className='cell-text'>White:
+                  <th>{playerWhite}</th>
+                </td>
+                <td className='cell-text'>Rating:
+                  <th>{eloWhite}</th>
+                </td>
+
+                <td className='cell-text'>Date:
+                  <th>{date}</th>
+                </td>
+                <td className='cell-text'>ECO Code:
+                  <th>{eco}</th>
+                </td>
+              </tr>
+              <tr className='vs'>
+                <th colSpan={3}>vs</th>
+              </tr>
+              <tr>
+                <td className='cell-text'>Black:
+                  <th>{playerBlack}</th>
+                </td>
+                <td className='cell-text'>Rating:
+                  <th>{eloBlack}</th>
+                </td>
+              </tr>
+              
+
+            </table>
+
           </div>
-          <div className='gmoves-container'>
-            <p id='gmoves'>{gameMovesPreview}</p>
+
+          <div className='heart-moves'>
+            <div className='button-container'>
+              <button type='button' id='heart-icon' onClick={handleClick}>
+                {isFavorite ? <FaHeart /> : <FaRegHeart />}
+              </button>
+            </div>
+            <div className='gmoves-container'>
+              {moves ? <p id='gmoves'>{moves}</p> : <p id='gmoves'>move list is empty</p>}
+            </div>
           </div>
+          <hr></hr>
         </div>
-      </div>
+      
     </Link>
   );
 };

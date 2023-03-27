@@ -8,6 +8,116 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 from django.http import Http404
 from authentication.models import User, PgnFavorites
+import re
+import chess.pgn
+from io import StringIO
+from datetime import datetime
+
+def parse_date(date_str):
+    date = datetime.strptime(date_str, '%a %b %d %Y %H:%M:%S GMT%z (%Z)')
+    return date.strftime('%b %d %Y')
+
+def parse_pgn(pgn_text):
+    game_data = {}
+    # extract the game information from the PGN text
+    pgn_header_regex = re.compile(r"\[(\w+)\s+\"(.+?)\"]")
+    pgn_headers = pgn_header_regex.findall(pgn_text)
+
+    # check if there are any headers
+    if pgn_headers:
+        for header in pgn_headers:
+            if header[0] == "White":
+                game_data["white"] = header[1]
+            elif header[0] == "Black":
+                game_data["black"] = header[1]
+            elif header[0] == "WhiteElo":
+                game_data["white_elo"] = header[1]
+            elif header[0] == "BlackElo":
+                game_data["black_elo"] = header[1]
+            elif header[0] == "Date":
+                try:
+                    date_str = header[1]
+                    
+                    game_data["date"] = parse_date(date_str)
+                except ValueError:
+                    game_data["date"] = header[1]
+
+    # extract the ECO code
+    eco_regex = re.compile(r"\[ECO\s+\"(.+?)\"]")
+    eco_match = eco_regex.search(pgn_text)
+    if eco_match:
+        game_data["eco"] = eco_match.group(1)
+
+    # extract the moves
+    moves_regex = re.compile(r"\d+\.\s+(\S+)")
+    moves_match = moves_regex.findall(pgn_text)
+    if moves_match:
+        moves = " ".join(moves_match)
+        game_data["moves"] = moves
+
+    return game_data
+
+
+class FetchMyGames(APIView):
+    # Get all mygames of a user
+
+    @permission_classes([IsAuthenticated])
+    def get(self, request):
+        pgns = []
+        user = User.objects.get(id=request.user.id)
+        user_serializer = UserPgnSerializer(user)
+
+        for pgn in user_serializer.data['my_games']:
+            real_pgn = Pgn.objects.get(id=pgn)
+
+            # extract game data from PGN
+            game_data = parse_pgn(real_pgn.pgn)
+
+            # serialize response data
+            pgn_serializer = PgnSerializer(real_pgn)
+            pgns.append({
+                **pgn_serializer.data,
+                'white_name': game_data.get("white"),
+                'white_rating': game_data.get("white_elo"),
+                'black_name': game_data.get("black"),
+                'black_rating': game_data.get("black_elo"),
+                'date': game_data.get("date"),
+                'eco': game_data.get("eco"),
+                'moves': game_data.get("moves"),
+            })
+
+        return Response(pgns, status=status.HTTP_200_OK)
+
+
+class FetchAssigned(APIView):
+    # Get all assigned games of a user
+
+    @permission_classes([IsAuthenticated])
+    def get(self, request):
+        pgns = []
+        user = User.objects.get(id=request.user.id)
+        user_serializer = UserPgnSerializer(user)
+
+        for pgn in user_serializer.data['assigned']:
+            real_pgn = Pgn.objects.get(id=pgn)
+
+            # extract game data from PGN
+            game_data = parse_pgn(real_pgn.pgn)
+
+            # serialize response data
+            pgn_serializer = PgnSerializer(real_pgn)
+            pgns.append({
+                **pgn_serializer.data,
+                'white_name': game_data.get("white"),
+                'white_rating': game_data.get("white_elo"),
+                'black_name': game_data.get("black"),
+                'black_rating': game_data.get("black_elo"),
+                'date': game_data.get("date"),
+                'eco': game_data.get("eco"),
+                'moves': game_data.get("moves"),
+            })
+
+        return Response(pgns, status=status.HTTP_200_OK)
 
 
 class PgnList(APIView):
@@ -27,23 +137,6 @@ class PgnList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class FetchMyGames(APIView):
-    # Get all mygames of a user
-
-    @permission_classes([IsAuthenticated])
-    def get(self, request):
-        pgns = []
-        user = User.objects.get(id=request.user.id)
-        user_serializer = UserPgnSerializer(user)
-
-        for pgn in user_serializer.data['my_games']:
-            real_PGN = Pgn.objects.get(id=pgn)
-            pgn_serializer = PgnSerializer(real_PGN)
-            pgns.append(pgn_serializer.data)
-
-        return Response(pgns, status=status.HTTP_200_OK)
-
-
 class FetchFavorites(APIView):
     # Get all favorites of a user
 
@@ -54,28 +147,26 @@ class FetchFavorites(APIView):
         user_serializer = UserPgnSerializer(user)
 
         for pgn in user_serializer.data['favorited']:
-            real_PGN = Pgn.objects.get(id=pgn)
-            pgn_serializer = PgnSerializer(real_PGN)
-            pgns.append(pgn_serializer.data)
+            real_pgn = Pgn.objects.get(id=pgn)
+
+            # extract game data from PGN
+            game_data = parse_pgn(real_pgn.pgn)
+
+            # serialize response data
+            pgn_serializer = PgnSerializer(real_pgn)
+            pgns.append({
+                **pgn_serializer.data,
+                'white_name': game_data.get("white"),
+                'white_rating': game_data.get("white_elo"),
+                'black_name': game_data.get("black"),
+                'black_rating': game_data.get("black_elo"),
+                'date': game_data.get("date"),
+                'eco': game_data.get("eco"),
+                'moves': game_data.get("moves"),
+            })
 
         return Response(pgns, status=status.HTTP_200_OK)
 
-
-class FetchAssigned(APIView):
-    # Get all assigned games of a user
-
-    @permission_classes([IsAuthenticated])
-    def get(self, request):
-        pgns = []
-        user = User.objects.get(id=request.user.id)
-        user_serializer = UserPgnSerializer(user)
-
-        for pgn in user_serializer.data['assigned']:
-            real_PGN = Pgn.objects.get(id=pgn)
-            pgn_serializer = PgnSerializer(real_PGN)
-            pgns.append(pgn_serializer.data)
-
-        return Response(pgns, status=status.HTTP_200_OK)
 
 class AddPgnToAssigned(APIView):
     # Record in junction table for Assigned
@@ -92,8 +183,8 @@ class AddPgnToAssigned(APIView):
         user.save()
         serializer = UserPgnSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
-    
+
+
 class AddPgnToMyGames(APIView):
     # Record in junction table for MyGames
 
@@ -114,9 +205,9 @@ class AddPgnToMyGames(APIView):
 class RemoveOrAddFavorite(APIView):
 
     def flipBool(self, pgn, user):
-    
+
         # Toggles the favorite status of a Pgn for a specific user.
-        
+
         try:
             pgn_favorite = PgnFavorites.objects.get(pgn=pgn, user=user)
             pgn_favorite.is_favorite = not pgn_favorite.is_favorite
@@ -192,7 +283,6 @@ class AddPgnToAssigned(APIView):
         user.save()
         serializer = UserPgnSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 
 class FetchPGNbyId(APIView):
