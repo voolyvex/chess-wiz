@@ -23,7 +23,7 @@ class RegisterView(generics.CreateAPIView):
 class FetchStudents(APIView):
 
     @permission_classes([AllowAny])
-    def get(self):
+    def get(self, request):
         users = User.objects.all()
         serializer = UserPgnSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

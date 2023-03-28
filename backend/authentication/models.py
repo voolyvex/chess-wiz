@@ -3,13 +3,14 @@ from django.contrib.auth.models import AbstractUser
 from pgn.models import Pgn
 
 
+
 class User(AbstractUser):
     is_student = models.BooleanField('student status', default=False)
     is_coach = models.BooleanField('coach status', default=False)
 
     my_games = models.ManyToManyField(Pgn, related_name='user_mygames')
     assigned = models.ManyToManyField(Pgn, related_name='user_assigned')
-    favorited = models.ManyToManyField(Pgn, through='PgnFavorites', related_name='favorite_pgns')
+    pgn_favorites = models.ManyToManyField(Pgn, through='PgnFavorites', related_name='favorite_users')
  
 class PgnFavorites(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

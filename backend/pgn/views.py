@@ -1,5 +1,5 @@
 from .models import Pgn
-from .serializers import PgnSerializer
+from .serializers import PgnSerializer, PgnFavoriteSerializer
 from authentication.serializers import UserPgnSerializer
 from rest_framework import status
 from rest_framework.views import APIView
@@ -9,13 +9,17 @@ from rest_framework.decorators import permission_classes
 from django.http import Http404
 from authentication.models import User, PgnFavorites
 import re
-import chess.pgn
-from io import StringIO
 from datetime import datetime
+import logging
+
+logging.basicConfig(filename='example.log',
+                    encoding='utf-8', level=logging.DEBUG)
+
 
 def parse_date(date_str):
     date = datetime.strptime(date_str, '%a %b %d %Y %H:%M:%S GMT%z (%Z)')
     return date.strftime('%b %d %Y')
+
 
 def parse_pgn(pgn_text):
     game_data = {}
@@ -37,7 +41,7 @@ def parse_pgn(pgn_text):
             elif header[0] == "Date":
                 try:
                     date_str = header[1]
-                    
+
                     game_data["date"] = parse_date(date_str)
                 except ValueError:
                     game_data["date"] = header[1]
@@ -146,8 +150,15 @@ class FetchFavorites(APIView):
         user = User.objects.get(id=request.user.id)
         user_serializer = UserPgnSerializer(user)
 
-        for pgn in user_serializer.data['favorited']:
+        for pgn in user_serializer.data['pgn_favorites']:
             real_pgn = Pgn.objects.get(id=pgn)
+            try:
+                pgn_favorite = PgnFavorites.objects.get(user=user, pgn=real_pgn)
+            except PgnFavorites.DoesNotExist:
+                continue  # skip this Pgn object if it is not a favorite
+            if not pgn_favorite.is_favorite:
+                continue  # skip this Pgn object if it is a favorite, but not marked as such
+            
 
             # extract game data from PGN
             game_data = parse_pgn(real_pgn.pgn)
@@ -166,6 +177,7 @@ class FetchFavorites(APIView):
             })
 
         return Response(pgns, status=status.HTTP_200_OK)
+
 
 
 class AddPgnToAssigned(APIView):
@@ -204,26 +216,24 @@ class AddPgnToMyGames(APIView):
 
 class RemoveOrAddFavorite(APIView):
 
-    def flipBool(self, pgn, user):
+    # def flipBool(self, pgn, user):
 
-        # Toggles the favorite status of a Pgn for a specific user.
+    #     # Toggles the favorite status of a Pgn for a specific user.
+    #     try:
+    #         PgnFavorites.is_favorite = not PgnFavorites.is_favorite
+    #         user.save()
+    #     except PgnFavorites.DoesNotExist:
+    #                 # If a PgnFavorite object for the user doesn't exist,
+    #                 # create one and set is_favorite to True
+    #                 PgnFavorites.objects.create(
+    #                     pgn=pgn, user=user, is_favorite=True)
 
-        try:
-            pgn_favorite = PgnFavorites.objects.get(pgn=pgn, user=user)
-            pgn_favorite.is_favorite = not pgn_favorite.is_favorite
-            pgn_favorite.save()
-        except PgnFavorites.DoesNotExist:
-            # If a PgnFavorite object for the user doesn't exist,
-            # create one and set is_favorite to True
-            pgn_favorite = PgnFavorites.objects.create(
-                pgn=pgn, user=user, is_favorite=True)
-
-        # Update the favorited_dict field on the Pgn model to reflect the current
-        # favorite status for all users.
-        favorited_users = PgnFavorites.objects.filter(
-            pgn=pgn, is_favorite=True).values_list('user__username', flat=True)
-        pgn.favorited_dict = {'users': list(favorited_users)}
-        pgn.save()
+    #     # Update the favorited_dict field on the Pgn model to reflect the current
+    #     # favorite status for all users.
+    #     favorited_users = PgnFavorites.objects.filter(
+    #         pgn=pgn, is_favorite=True).values_list('user__username', flat=True)
+    #     pgn.favorited_dict = {'users': list(favorited_users)}
+    #     pgn.save()
 
     @permission_classes([IsAuthenticated])
     def patch(self, request, pgn_pk):
@@ -231,22 +241,27 @@ class RemoveOrAddFavorite(APIView):
             user = User.objects.get(id=request.user.id)
             pgn = Pgn.objects.get(id=pgn_pk)
             pf = PgnFavorites.objects.filter(pgn=pgn, user=user).first()
+
+            if pf:
+                # if this game is already in pgn_favorites
+                # flip boolean
+                pf.is_favorite = not pf.is_favorite
+
+            else:
+                # create reference to the pgn in pgn_favorites
+                pf = PgnFavorites.objects.create(
+                    pgn=pgn, user=user, is_favorite=True)
+
         except Pgn.DoesNotExist:
             raise Http404("Pgn does not exist")
-        if pf:
-            # remove the pgn from the junction table
-            pf.delete()
-        else:
-            # add the pgn to the junction table
-            PgnFavorites.objects.create(pgn=pgn, user=user, is_favorite=True)
-        self.flipBool(pgn, user)
-        pgn.save()
-        pgn_serialized = PgnSerializer(pgn, partial=True).data
-        user.save()
-        user_serialized = UserPgnSerializer(user).data
+
+        # pgn.save()
+        # pgn_serialized = PgnSerializer(pgn).data
+        pf.save()
+        pf_serialized = PgnFavoriteSerializer(pf).data
         response_data = {
-            "user": user_serialized,
-            "pgn": pgn_serialized
+            "pgn_favorite": pf_serialized,
+            # "pgn": pgn_serialized
         }
         return Response(response_data, status=status.HTTP_200_OK)
 
@@ -290,6 +305,12 @@ class FetchPGNbyId(APIView):
     @permission_classes([IsAuthenticated])
     def get(self, request, pgn_pk):
         pgn = Pgn.objects.get(id=pgn_pk)
-
+        try:
+            is_favorite = PgnFavorites.objects.get(
+                user=request.user, pgn=pgn).is_favorite
+        except PgnFavorites.DoesNotExist:
+            is_favorite = False
         serializer = PgnSerializer(pgn)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        data = serializer.data
+        data['is_favorite'] = is_favorite
+        return Response(data, status=status.HTTP_200_OK)

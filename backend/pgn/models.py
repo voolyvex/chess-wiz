@@ -8,4 +8,3 @@ class Pgn(models.Model):
     pgn = models.TextField(verbose_name='pgn file')
     favorited_dict = models.JSONField(default=dict, blank=True)
 
-    

@@ -17,7 +17,7 @@ const CoachAssignPGN = ({ pgn, id }) => {
     async function fetchStudents() {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/auth/", { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
-            setStudents(response.data.filter(student => student.is_student === true));
+            setStudents(response.data.filter(student => student.is_student));
         }
         catch (error) {
             console.log(error.message)
@@ -55,7 +55,8 @@ const CoachAssignPGN = ({ pgn, id }) => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        e.stopPropagation();
         !PGNid ? postPGN() :
             patchPGN(studentId, PGNid);
     }
