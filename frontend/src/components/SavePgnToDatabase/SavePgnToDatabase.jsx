@@ -62,7 +62,8 @@ const SavePgnToDatabase = ({ headers, pgn }) => {
                         onChange={e => setPGN(e.target.value)}
                         required={true} />
                     <div className='save-div'>
-                        <h4 className='form-title'>Select Location to Save </h4>
+                        <h4 className='form-title'>Select Location ↓ </h4>
+                        <h4 className='save-title'>Save</h4>
                         <button className='save-button' type='submit'>
                             <HiArrowNarrowRight style={{ fontSize: "20px" }} />
                         </button>

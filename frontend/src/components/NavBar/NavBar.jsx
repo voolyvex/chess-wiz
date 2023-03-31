@@ -11,14 +11,14 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul className="nav-items">
-        <li className="brand">
+        <div className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
 
             <FaChessRook className="icon-rook" />
             <FaHatWizard className="icon-hat" />
             <h2>Chess<b className="italic">Wiz</b></h2>
           </Link>
-        </li>
+        </div>
         <div className="navlinks">
           <Link to='/' style={{ textDecoration: "none", color: "white" }}>
             <li className="navlink">Home</li>

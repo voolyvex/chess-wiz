@@ -4,52 +4,47 @@ import { Link } from 'react-router-dom';
 
 
 
-const ThirdPartyMapper = ({ games, username, year, month }) => {
+const ThirdPartyMapper = ({ games }) => {
 
     // Return the feed of Chess.com search results
 
     return (
-        <div className="s-game-feed">
+        <div className="s-game-card-container">
             {games && games
 
                 .map((game) => (
 
                     <Link className='s-link' to={`/${game.uuid}`} replace="true" key={game.url} state={{ game: game }}>
-                        <div className="s-game-card">
-                            <hr></hr>
+                        <div className="s-game-card-searchfeed">
                             <div className='table-label-container'>
-
                                 <div className='table-div'>
                                     <table>
-                                        <tr>
-                                            <td className='cell-text'>White:
-                                                <th>{game.white.username}</th>
+                                        <tr className='left-col'>
+                                            <td className='cell-text-p-search'>White
+                                                <h4 className='cell-val-p-search'>{game.white.username}</h4>
                                             </td>
-                                            <td className='cell-text'>Rating:
-                                                <th>{game.white.rating}</th>
-                                            </td>
-                                        </tr>
-                                        <tr className='vs'>
-                                            <th colSpan={3}>vs</th>
-                                        </tr>
-                                        <tr>
-                                            <td className='cell-text'>Black:
-                                                <th>{game.black.username}</th>
-                                            </td>
-                                            <td className='cell-text'>Rating:
-                                                <th>{game.black.rating}</th>
+                                            <td className='cell-text-r-search'>Rating
+                                                <h4 className='cell-val-r-search'>{game.white.rating}</h4>
                                             </td>
                                         </tr>
-
+                                        <tr className='vs-container'>
+                                            <h4 className='vs' colSpan={2}>vs</h4>
+                                        </tr>
+                                        <tr className='left-col'>
+                                            <td className='cell-text-p-search'>Black
+                                                <h4 className='cell-val-p-search'>{game.black.username}</h4>
+                                            </td>
+                                            <td className='cell-text-r-search'>Rating
+                                                <h4 className='cell-val-r-search'>{game.black.rating}</h4>
+                                            </td>
+                                        </tr>
                                     </table>
-
                                 </div>
                                 <div className='label-div'>
-
                                     <label>View Game</label>
                                 </div>
                             </div>
-                            <hr></hr>
+
                         </div>
                     </Link>
                 ))}

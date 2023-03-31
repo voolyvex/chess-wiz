@@ -18,11 +18,11 @@ import MyGames from "./components/MyGames/MyGames";
 import Assigned from "./components/Assigned/Assigned";
 import Favorites from "./components/Favorites/Favorites";
 import Footer from "./components/Footer/Footer";
-import PgnLoader from "./components/PgnViewer/PgnLoader";
+
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import PGNViewer from "./components/PgnViewer/PgnViewer";
+
 
 function App() {
   return (
@@ -38,7 +38,6 @@ function App() {
           <Route exact path="/favorites" element={<Favorites />} />
           <Route path="/analyze" element={<AnalyzePage />} />
           <Route path="/play" element={<PlayPage />} />
-
           <Route path="/:id" element={<HomePage />} />
           
         </Route>

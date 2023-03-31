@@ -52,14 +52,15 @@ def parse_pgn(pgn_text):
     if eco_match:
         game_data["eco"] = eco_match.group(1)
 
-    # extract the moves
-    moves_regex = re.compile(r"\d+\.\s+(\S+)")
-    moves_match = moves_regex.findall(pgn_text)
+    # Extract the moves
+    moves_regex = re.compile(r"\]\s*([^\]]+)\s*$")
+    moves_match = moves_regex.search(pgn_text)
     if moves_match:
-        moves = " ".join(moves_match)
-        game_data["moves"] = moves
+        moves = moves_match.group(1)
+        game_data["moves"] = moves.strip()
 
     return game_data
+
 
 
 class FetchMyGames(APIView):

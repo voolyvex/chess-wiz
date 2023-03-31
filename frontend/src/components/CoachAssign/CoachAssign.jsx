@@ -7,12 +7,15 @@ import './coach.css'
 
 
 const CoachAssignPGN = ({ pgn, id }) => {
-    
+
     const [PGN, setPGN] = useState(pgn);
     const [PGNid, setPGNid] = useState(id);
     const [studentId, setStudentId] = useState(10);
     const [selectedValue, setSelectedValue] = useState({ value: '' });
     const [students, setStudents] = useState([]);
+    const mystring = "_________";
+
+
 
     async function fetchStudents() {
         try {
@@ -29,7 +32,7 @@ const CoachAssignPGN = ({ pgn, id }) => {
         console.log(PGNid)
     }, []);
 
-    const options = students.map(student => ({ value: student.username, label: student.first_name + student.last_name }));
+    const options = students.map(student => ({ value: student.username, label: student.username }));
 
     const postPGN = async () => {
         let pgn = { "pgn": PGN }
@@ -70,26 +73,29 @@ const CoachAssignPGN = ({ pgn, id }) => {
     }, [selectedValue]);
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div className='assign-button-text-container'>
-
+        <article className='assign-container'>
+            <form className='assign-form' onSubmit={handleSubmit}>
+                <div className='assign-submit-container'>
                     <div className='button-text'>
-                        <>Submit Assignment for
-                        <div className='student-selected'>{studentId}</div>
+                        <>Submit Assignment for:
+                            {studentId ? <div className='student-selected'>{studentId}</div> :
+                                <div className='line'>
+                                    <p>{mystring}</p>
+                                </div>}
                         </>
                     </div>
-                        <button className='assign-button' type='submit'>
-                            <HiArrowNarrowRight style={{ fontSize: "20px" }} />
-                        </button>
+                    <button className='assign-button' type='submit'>
+                        <HiArrowNarrowRight style={{ fontSize: "20px" }} />
+                    </button>
                 </div>
-                    <h4 className='assign-title'>Select Student from Dropdown Menu </h4>
-
+                <div className='assign-dropdown-container'>
+                    <h4 className='assign-title'>Select Student from Menu </h4>
                     <div className="assign-dropdown">
                         <Dropdown placeHolder="Select..." options={options} selectedValue={selectedValue} setSelectedValue={setSelectedValue} />
                     </div>
+                </div>
             </form>
-        </div>
+        </article>
     );
 }
 

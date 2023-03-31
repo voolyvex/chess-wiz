@@ -1,23 +1,20 @@
 h1.welcome {
   margin-inline: auto;
-  width: 600px;
+  width: 800px;
   text-align: center;
 }
 .search-feed-container {
-  margin-right: 1rem;
   min-height: 100vh;
   height: max-content;
   max-height: 200vh;
-  flex: 0;
-  width: 10rem;
 }
 
 .board-feed-container {
   display: block;
-  width: 100%;
+  /* width: 100%; */
   flex: 1;
   text-align: left;
-  margin-inline: 4rem;
+  margin-inline: 6rem;
 }
 .outer-board-container {
   position: fixed;
@@ -27,14 +24,19 @@ h1.welcome {
   align-items: center;
   
 }
+
 #board-matte {
-  width: 645px;
-  display: block;
+  width: 660px;
+  display: flex;
   /* width: 624px; */
-  height: fit-content;
+  min-height: 850px;
+  height: 70vh;
+  max-height: 80vh;
   background-color: rgb(197, 174, 134, .3);
   margin: auto;
   justify-content: center;
+  border: 4px solid #645050;
+  border-radius: 12px;
 }
 .layout-top {
   justify-content: center;
@@ -64,29 +66,35 @@ h1.welcome {
 }
 .buttons {
   margin-block-start: 1.5rem;
-  width: 100%;
+  margin-right: 4px;
+  width: 90%;
   
 }
 .moves.inline {
-  background: rgb(236, 236, 236, .92);
+  border-radius: 7px;
+  /* background: rgb(236, 236, 236, .92); */
+  background-color:rgba(230, 226, 226, 0.65);
   margin-block-start: 1rem;
   padding: 12px;
-  
+  min-height: 5rem;
   text-align: left;
+}
+
+.moves.inline:hover {
+  background-color:rgba(231, 229, 229, 0.95);
 }
 .boardAnd {
   font-family: 'Helvetica', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 1px;
 }
+
 .board-container {
-  
   border: 2px hidden grey;
   border-radius: 5px;
   
-  padding-inline-start: 3rem;
   min-height: fit-content;
   height: 840px;
-  max-height: 1400px;
+  max-height: 90vh;
   margin: auto;
   justify-items: stretch;
 }

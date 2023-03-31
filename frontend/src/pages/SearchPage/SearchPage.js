@@ -31,12 +31,15 @@ const SearchPage = (props) => {
 
   return (
     <div className="search-page">
-      <h3 className="searchfeed-title">Search</h3>
-      <h1>Chess.com Players</h1>
+
+    <div className="search-game-feed" id="game-feed-container">
+      <h3 className="feed-title-1">Search</h3>
+      
       <SearchForm handleSearch={getPgnByPlayer} username={username} year={year} month={month} setUsername={setUsername} setYear={setYear} setMonth={setMonth}/>
-      <div id="game-feed">
+      <div id="s-game-feed">
         <ThirdPartyMapper games={games} username={username} year={year} month={month}/>
       </div>
+    </div>
     </div>
   );
 };

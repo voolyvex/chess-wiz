@@ -35,7 +35,7 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
   @supports (-webkit-font-smoothing: antialiased) {
   };
   @supports (-moz-osx-font-smoothing: grayscale) {
@@ -67,6 +67,7 @@ main {
   width:100%;
   min-height: 100vh;
   margin-top: -30px; /* adjust this value according to the height of your footer */
+  margin-bottom: 64px;
 }
 article {
   font-family: inherit;
@@ -79,9 +80,13 @@ body {
   height: 100%;
 }
 section {
-  max-width: fit-content;
   width: 100%;
   margin-inline: 2rem;
+}
+section.center-section {
+  position: sticky;
+  height: 500vh;
+  max-height: 5000px;
 }
 h1 {
   color: white;

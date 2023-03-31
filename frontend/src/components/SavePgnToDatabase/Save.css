@@ -4,7 +4,8 @@
 }
 .form-container {
   min-height: 155px;
-  height: 50%;
+  
+  max-height:700px;
   width: auto;
 }
 
@@ -54,22 +55,34 @@ textarea[name="post"] {
 .form-title {
   width: auto;
   font-weight: 500;
+  padding-right: 2rem;
+}
+.save-title {
+  width: 3rem;
+  text-align: right;
+  margin-right: 0;
+  padding-left: 2rem;
+  font-weight: 500;
+}
+button.save-button {
+  margin-left: 0;
 }
 .save-button {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 1px;
   background-color: white;
-  border-color: #327ceb;
+  border-color: #0077b6;
   border-radius: 3px;
   border-width: 2px;
   width: 2.4rem;
   color: #327ceb;
-  padding: 1px;
   height: 26px;
+  margin-left: 0;
+  
   margin-top: 0;
   box-shadow: 1px 2px 5px black;
-  padding-bottom: 4px;
+  padding: 1px;
+  
   
 }
 .save-button:hover {
@@ -78,7 +91,7 @@ textarea[name="post"] {
   border: 0px inset wheat;
   border-radius: 2.5px;
   border-style: solid;
-  opacity: 98%;
+  opacity: 99%;
   box-shadow: 0px 1px 1px wheat;
   color: white;
 }
@@ -87,7 +100,7 @@ textarea[name="post"] {
   background-color: #327ceb;
   border: 0px groove rgb(230, 226, 226);
   border-radius: inherit;
-  opacity: 98%;
+  opacity: 100%;
 }
 
 .save-div {
@@ -102,7 +115,7 @@ textarea[name="post"] {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-around;
   gap: .5em;
   background: black;
   border-style:inset;
@@ -111,6 +124,24 @@ textarea[name="post"] {
   border-top-right-radius: 1px;
   border-width: 3px;
   border-color: #373434;
-  padding-inline-end: 1rem;
+  padding-inline-end: 0;
   margin-block-start: 1px;
+  padding-bottom: 2px;
+}
+
+.save-dropdown:hover {
+  opacity: 92%;
+}
+.save-dropdown {
+  
+  max-width: 217px;
+  height: auto;
+  text-align: left;
+  text-indent: 2px;
+  border: 1px solid #ccc;
+  position: static;
+  border-radius: 5px;
+  margin-block-start: 1px;
+  margin-right: 3.1rem;
+  margin-left: auto;
 }

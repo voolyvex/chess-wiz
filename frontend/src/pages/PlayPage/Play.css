@@ -51,5 +51,6 @@
   .save-container {
     margin-left: 13%;
     padding: auto;
+    overflow: hidden;
   }
 }

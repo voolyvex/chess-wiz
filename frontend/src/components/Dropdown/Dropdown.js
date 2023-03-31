@@ -9,10 +9,13 @@ const Icon = () => {
   );
 };
 
-
-const Dropdown = ({ placeHolder, options, selectedValue, setSelectedValue}) => {
+const Dropdown = ({
+  placeHolder,
+  options,
+  selectedValue,
+  setSelectedValue,
+}) => {
   const [showMenu, setShowMenu] = useState(false);
-  // const [selectedValue, setSelectedValue] = useState(null);
 
   useEffect(() => {
     const handler = () => setShowMenu(false);
@@ -23,48 +26,42 @@ const Dropdown = ({ placeHolder, options, selectedValue, setSelectedValue}) => {
     };
   });
   const handleInputClick = (e) => {
-    console.log("Clicked")
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
-  
+
   const getDisplay = () => {
     if (selectedValue) {
       return selectedValue.label;
     }
     return placeHolder;
   };
-  
+
   const onItemClick = (option) => {
-    // console.log(option.target.innerHTML);
     setSelectedValue(option);
   };
-  
+
   const isSelected = (option) => {
     if (!selectedValue) {
       return false;
     }
     return selectedValue.value === option.value;
-  }
-  
-  console.log(selectedValue)
+  };
+
   return (
     <div className="dropdown-container">
       <div onClick={handleInputClick} className="dropdown-input">
         <div className="dropdown-selected-value">{getDisplay()}</div>
         <div className="dropdown-tools">
-          <div className="dropdown-tool">
-            <Icon />
-          </div>
+          
         </div>
         {showMenu && (
           <div className="dropdown-menu">
             {options.map((option) => (
-              <div 
-                onClick={() => onItemClick(option)} 
-                key={option.value} 
+              <div
+                onClick={() => onItemClick(option)}
+                key={option.value}
                 className={`dropdown-item ${isSelected(option) && "selected"}`}
-                
               >
                 {option.label}
               </div>

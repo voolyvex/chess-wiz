@@ -27,7 +27,7 @@ const Assigned = (props) => {
 
     return (
         <div id='game-feed'>
-            <h3 className='feed-title'>
+            <h3 className='feed-title-4'>
                 Assigned
             </h3>
             <GameFeedMapper games={games} />

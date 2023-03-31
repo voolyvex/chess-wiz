@@ -1,19 +1,4 @@
-.save-dropdown:hover {
-    opacity: 92%;
-  }
-.save-dropdown {
-    max-width: 217px;
-    height: auto;
-    text-align: left;
-    text-indent: 2px;
-    border: 1px solid #ccc;
-    position: static;
-    border-radius: 5px;
-    width: 100%;
-    margin-block-start: 1px;
-    margin-block-end: 3.1rem;
-    margin-left: auto;
-}
+
 
 
 .dropdown-container {
@@ -27,15 +12,26 @@
     width: 100%;
     
   }
- 
-  
+    
   .dropdown-input {
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
-    user-select: none;
+    
   }
-  
+
+  .dropdown-input:after {
+    content: '<>';
+    font: 17px "Consolas", monospace;
+    color: #929292;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 11px;
+    }
+
   .dropdown-menu {
     position: absolute;
     transform: translateY(4px);
@@ -43,9 +39,9 @@
     border: 3px outset #ccc;
     border-radius: 5px;
     overflow: auto;
-    
     background-color: rgb(19, 3, 27);
     opacity: 99%;
+    
   }
   
   .dropdown-item {
@@ -64,3 +60,8 @@
     opacity: 90%;
   }
   
+  @media screen and (max-width: 1060px) {
+    .dropdown-menu {
+      position: sticky;
+    }
+  }

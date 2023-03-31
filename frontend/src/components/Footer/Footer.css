@@ -6,6 +6,8 @@ footer {
   width: 100%;
   bottom: 0;
   background: linear-gradient(to bottom right, transparent, steelblue, steelblue, transparent);
+  background: linear-gradient(to bottom right, transparent, steelblue, steelblue, black);
+  background-blend-mode: multiply;
   opacity: 99%;
   box-shadow: 4px 2px 5px transparent;
 }

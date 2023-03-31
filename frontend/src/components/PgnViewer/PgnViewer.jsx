@@ -2,15 +2,12 @@ import React, { useLayoutEffect } from 'react'
 import Children from 'react-children-utilities'
 import * as uuid from 'uuid'
 import { pgnView } from '@mliebelt/pgn-viewer'
-import { eco } from 'chess-eco-codes'
 import '../../pages/HomePage/Home.css'
 
 function PGNViewer(props) {
   const gameDecription = Children.onlyText(props.children)
   const id = 'board-' + uuid.v4()
 
-  // const data = eco('rnbqkbnr/pppppppp/8/8/6P1/8/PPPPPP1P/RNBQKBNR b KQkq g3 0 1');
-  // console.log(data);
 
   useLayoutEffect(() => {
     pgnView(id,
@@ -18,8 +15,7 @@ function PGNViewer(props) {
         pgn: gameDecription,
         lazyLoad: true,
         theme: 'brown',
-        width: '580px',
-        boardSize: '580px',
+        width: '600',
         position: 'start',
         showCoords: true,
         orientation: 'white',
@@ -35,8 +31,7 @@ function PGNViewer(props) {
         coordsInner: false,
         coordsFactor: '1',
         coordsFontSize: '10',
-        colorMarker: 'circle',
-        startPlay: '1',
+        colorMarker:  'square',
         hideMovesBefore: false,
         notation: 'short',
         notationLayout: 'inline',
@@ -52,10 +47,8 @@ function PGNViewer(props) {
   return (
     <div id='board-matte'>
       <div className="board-container" id={id}></div>
-
     </div>
   )
 }
-
 
 export default PGNViewer;

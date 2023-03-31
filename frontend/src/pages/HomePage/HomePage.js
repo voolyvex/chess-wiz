@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import MyGames from "../../components/MyGames/MyGames";
 import "./Home.css";
@@ -11,11 +11,12 @@ import SearchPage from "../SearchPage/SearchPage";
 const HomePage = () => {
   const [user] = useAuth();
 
+
   return (
     <main>
       <section>
         <div className="left-outer-feeds-container">
-          <div id="search-feed-container">
+          <div className="search-feed-container">
             <SearchPage />
           </div>
 

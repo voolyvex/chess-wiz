@@ -3,14 +3,16 @@ import { useParams, useLocation } from 'react-router-dom';
 import PGNViewer from './PgnViewer';
 import axios from 'axios';
 import CoachAssignPGN from '../CoachAssign/CoachAssign';
+import useAuth from "../../hooks/useAuth";
 
 
-const PgnLoader = ({ pgns }) => {
+const PgnLoader = ({ props }) => {
+  const [user] = useAuth();
   const { id } = useParams();
   const [pgn, setPgn] = useState('');
 
   const location = useLocation();
-  
+
 
   const defaultPgn =
     `[Event "Paris"]
@@ -66,7 +68,7 @@ const PgnLoader = ({ pgns }) => {
 
   const filterGames = (games) => {
     const game = games.find((game) => game.id == Number(id));
-    
+
     if (game) {
       setPgn(game.pgn);
     } else {
@@ -75,7 +77,8 @@ const PgnLoader = ({ pgns }) => {
   }
 
   return <>
-    <CoachAssignPGN pgn={pgn}/>
+
+    {user && user.is_coach ? <CoachAssignPGN pgn={pgn} /> : null}
     <PGNViewer>{pgn}</PGNViewer>
   </>
 };

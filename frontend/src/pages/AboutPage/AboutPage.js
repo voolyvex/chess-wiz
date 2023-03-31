@@ -7,10 +7,10 @@ const AboutPage = () => {
     <div className="about-container">
       <div className="about-text">
         <div className="titles">
-          <h1 className="fade-in">A cloud-based</h1>{" "}
+          <h1 className="fade-in">A chess software</h1>{" "}
           <h1 className="delay1 fade-in">platform</h1>
           <h1 className="delay2 fade-in">
-            <i>geared</i>
+            <i style={{color: "#929292"}}>geared</i>
           </h1>
           <h1 className="delay3 fade-in">for</h1>
           <div className="stage">
@@ -82,8 +82,8 @@ const AboutPage = () => {
           <a href="/login">
             <button>Login!</button>
           </a>
-          <a href="/register">
-            <button>Create Account!</button>
+          <a className="register-button" href="/register">
+            <button>Register!</button>
           </a>
         </div>
       </div>

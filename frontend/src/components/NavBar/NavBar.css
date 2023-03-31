@@ -10,7 +10,13 @@ li {
 }
 
 .navBar {
-  background: linear-gradient(to bottom right, transparent, steelblue, steelblue, transparent);
+  background: linear-gradient(
+    to bottom right,
+    transparent,
+    steelblue,
+    steelblue,
+    transparent
+  );
   opacity: 99%;
   box-shadow: 4px 2px 5px transparent;
   color: white;
@@ -22,10 +28,9 @@ ul.nav-items {
   display: flex;
   justify-content: space-around;
   align-items: last baseline;
-margin: auto;
-padding: auto;
-vertical-align: middle;
-
+  margin: auto;
+  padding: auto;
+  vertical-align: middle;
 }
 
 .navBar button {
@@ -33,7 +38,7 @@ vertical-align: middle;
   border: 2px solid white;
   color: white;
   padding: 0.4rem 0.5rem;
-  position: relative;;
+  position: relative;
 }
 
 .navBar button:hover {
@@ -42,29 +47,33 @@ vertical-align: middle;
   cursor: pointer;
 }
 
-
 .italic {
   font-style: italic;
 }
-li.brand {
-  flex-grow:2;
-}
+
 .brand {
-  cursor: pointer;
+  display: inline-block;
+  margin: auto;
+  padding: auto;
+  flex-grow: 2;
+  width: fit-content;
   font-size: 2rem;
   text-align: center;
-  line-height: .6;
+  line-height: 0.6;
 }
-.icon-hat{
+.brand:hover {
+  cursor: pointer;
+}
+.icon-hat {
   opacity: 50%;
   color: aqua;
 }
-.icon-rook{
+.icon-rook {
   opacity: 55%;
   color: aquamarine;
 }
 .navlinks {
-  flex-grow:1;
+  flex-grow: 1;
   display: flex;
   margin-inline: rem;
   min-width: fit-content;
@@ -77,14 +86,12 @@ li.navlinks {
   color: #fff;
   padding: 0.5rem;
   text-decoration: none;
-  
 }
 .navlink {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 li.navlink {
-  
   background-color: transparent;
   color: #fff;
   border: 2px hidden;
@@ -106,9 +113,8 @@ li.navlink:focus {
   text-align: right;
 }
 .logged {
-  flex-grow:2;
+  flex-grow: 2;
   display: flex;
   justify-content: center;
   gap: 1rem;
-  
 }
