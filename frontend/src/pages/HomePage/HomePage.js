@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useAuth from "../../hooks/useAuth";
 import MyGames from "../../components/MyGames/MyGames";
 import "./Home.css";
@@ -11,7 +11,6 @@ import SearchPage from "../SearchPage/SearchPage";
 const HomePage = () => {
   const [user] = useAuth();
 
-
   return (
     <main>
       <section>
@@ -20,16 +19,19 @@ const HomePage = () => {
             <SearchPage />
           </div>
 
-          <div id="game-feed-container">
-            <MyGames />
-          </div>
+          {user ? (
+            <div id="game-feed-container">
+              <MyGames />
+            </div>
+          ) : null}
         </div>
       </section>
       <section className="center-section">
-        {user ?
-        <div id="fade-out">
-          <h1 className="welcome">Welcome back, {user.username}!</h1>
-        </div> : null}
+        {user ? (
+          <div id="fade-out">
+            <h1 className="welcome">Welcome back, {user.username}!</h1>
+          </div>
+        ) : null}
         <div className="board-feed-container">
           <div className="outer-board-container">
             <PgnLoader />
@@ -38,12 +40,16 @@ const HomePage = () => {
       </section>
       <section>
         <div className="outer-feeds-container">
-          <div id="game-feed-container">
-            <Favorites />
-          </div>
-          <div id="game-feed-container">
-            <Assigned />
-          </div>
+          {user ? (
+            <div id="game-feed-container">
+              <Favorites />
+            </div>
+          ) : null}
+          {user ? (
+            <div id="game-feed-container">
+              <Assigned />
+            </div>
+          ) : null}
         </div>
       </section>
     </main>

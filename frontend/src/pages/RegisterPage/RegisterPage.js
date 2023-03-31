@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
+
 const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
   const defaultValues = {
@@ -22,18 +23,18 @@ const RegisterPage = () => {
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
       <label>
-          I am a student
-          <input
-            type="radio"
+          I am a student.
+          <input className="check-box"
+            type="checkbox"
             name="is_student"
             value={formData.is_student}
             onChange={handleInputChange}
           />
         </label>
         <label>
-          I am a coach
-          <input
-            type="radio"
+          I am a coach.
+          <input className="check-box"
+            type="checkbox"
             name= "is_coach"
             value={formData.is_coach}
             onChange={handleInputChange}
