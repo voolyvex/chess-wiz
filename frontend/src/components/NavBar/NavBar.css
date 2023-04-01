@@ -2,9 +2,8 @@ ul {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  vertical-align: middle;
+  
 }
-
 li {
   font-size: 1.25rem;
 }
@@ -16,21 +15,23 @@ li {
     steelblue,
     steelblue,
     transparent
-  );
-  opacity: 99%;
-  box-shadow: 4px 2px 5px transparent;
-  color: white;
-  margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
-}
-
-ul.nav-items {
+    );
+    opacity: 99%;
+    box-shadow: 4px 2px 5px transparent;
+    color: white;
+    margin-bottom: 2rem;
+    padding: 1.5rem 0rem;
+    padding-left: 2rem;
+    
+  }
+  
+  ul.nav-items {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: last baseline;
   margin: auto;
   padding: auto;
-  vertical-align: middle;
+  column-gap: 1rem;
 }
 
 .navBar button {
@@ -50,18 +51,10 @@ ul.nav-items {
 .italic {
   font-style: italic;
 }
-
 .brand {
-  display: inline-block;
-  margin: auto;
-  padding: auto;
-  flex-grow: 2;
-  width: fit-content;
-  font-size: 2rem;
-  text-align: center;
-  line-height: 0.6;
+  justify-content: center;
 }
-.brand:hover {
+a.brand:hover {
   cursor: pointer;
 }
 .icon-hat {
@@ -72,24 +65,42 @@ ul.nav-items {
   opacity: 55%;
   color: aquamarine;
 }
-.navlinks {
-  flex-grow: 1;
+.brand {
   display: flex;
-  margin-inline: rem;
-  min-width: fit-content;
-  width: auto;
-  max-width: 60%;
-  justify-content: space-around;
+  margin: auto;
+  padding: auto;
+  
+  width: 40%;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 0.6;
+}
+.navlinks {
+  
+  display: flex;
+  margin-inline-end: 3rem;
+  min-width: 10%;
+  width: 20%;
+  max-width: 70%;
+  justify-content: space-between;
+  
+}
+.logged {
+  
+  display: flex;
+  justify-content: center;
+  width: 40%;
+  column-gap: 1em;
+  
 }
 li.navlinks {
   background-color: transparent;
   color: #fff;
-  padding: 0.5rem;
+  
   text-decoration: none;
 }
 .navlink {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin:auto;
 }
 li.navlink {
   background-color: transparent;
@@ -111,10 +122,4 @@ li.navlink:focus {
 .loggedin {
   padding-right: 0;
   text-align: right;
-}
-.logged {
-  flex-grow: 2;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
 }

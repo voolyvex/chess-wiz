@@ -1,20 +1,18 @@
 
 .left-outer-feeds-container {
-  display: inline-flex;
-  min-width: 700px;
-  max-width: auto;
+  display: flex;
+  width: auto;
   position: relative;
-  margin-inline-start: 1rem;
-  justify-content: left;
+  
+  justify-content: right;
 }
 
 .outer-feeds-container {
-  display: inline-flex;
-  min-width: 700px;
-  max-width: auto;
-  margin-inline-end: 1rem;
+  display: flex;
+  width: auto;
+  
   position: relative;
-  justify-content: right;
+  justify-content: left;
 }
 
 h3 {
@@ -81,29 +79,20 @@ h3 {
   
 }
 #game-feed-container.search-game-feed  {
-  justify-content: center;
+  padding-left: auto;
+}
+#game-feed-container.fav-game-feed  {
+  padding-left: auto;
 }
 #game-feed-container {
   width: 310px;
-  margin: .5rem 3rem; /* adjust this value as needed */
+  margin: .5rem 2rem; /* adjust this value as needed */
   padding: 0;
   padding-top: 4px;
   border: 4px hidden rgb(215, 215, 215, 0.25);
-  border-radius: 5px;
+  border-radius: 0;
 }
-/* 
-#game-feed {
-  color: orange;
-  list-style: none;
-} */
-/* .game-feed {
-  text-align: center;
-  columns: auto;
-  column-gap: 0;
-  flex-direction: column;
-  width: fit-content;
-  height: fit-content;
-} */
+
 .game-card-container {
   background: rgba(0, 0, 0, 0.1);
   padding: 0 auto;
@@ -252,8 +241,8 @@ h4 {
   padding: 6px .5rem;
   
   min-height: 120px;
-  height: 150px;
-  max-height: 150px;
+  height: 164px;
+  max-height: 164px;
   margin: 1rem 0;
   text-align:left;
   min-width: auto;

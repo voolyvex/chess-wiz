@@ -63,15 +63,18 @@ html, body {
 }
 main {
   display: flex;
-  justify-content: space-around;
-  width:100%;
+  justify-content: space-evenly;
   min-height: 100vh;
   margin-top: -30px; /* adjust this value according to the height of your footer */
   margin-bottom: 64px;
+  
 }
 article {
   font-family: inherit;
   text-align: justify;
+}
+article.assign-container {
+  margin-block-start: auto;
 }
 body {
   margin: 0 auto;
@@ -80,13 +83,22 @@ body {
   height: 100%;
 }
 section {
-  width: 100%;
-  margin-inline: 2rem;
+  padding: auto;
+}
+section.left-section {
+  width:35%;
+  justify-content: right;
 }
 section.center-section {
+  display: flex;
+  width:30%;
   position: sticky;
   height: 500vh;
   max-height: 5000px;
+  margin: auto;
+}
+section.right-section {
+  width:35%;
 }
 h1 {
   color: white;

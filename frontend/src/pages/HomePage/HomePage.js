@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <main>
-      <section>
+      <section className="left-section">
         <div className="left-outer-feeds-container">
           <div className="search-feed-container">
             <SearchPage />
@@ -38,15 +38,15 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="right-section">
         <div className="outer-feeds-container">
           {user ? (
-            <div id="game-feed-container">
+            <div className="fav-game-feed" id="game-feed-container">
               <Favorites />
             </div>
           ) : null}
           {user ? (
-            <div id="game-feed-container">
+            <div className="assigned-game-feed" id="game-feed-container">
               <Assigned />
             </div>
           ) : null}

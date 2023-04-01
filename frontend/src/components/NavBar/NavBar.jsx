@@ -23,9 +23,9 @@ const Navbar = () => {
           <Link to='/' style={{ textDecoration: "none", color: "white" }}>
             <li className="navlink">Home</li>
           </Link>
-          <Link to='/search' style={{ textDecoration: "none", color: "white" }}>
+          {/* <Link to='/search' style={{ textDecoration: "none", color: "white" }}>
             <li className="navlink">Search</li>
-          </Link>
+          </Link> */}
           <Link to='/analyze' style={{ textDecoration: "none", color: "white" }}>
             <li className="navlink">Analyze</li>
           </Link>

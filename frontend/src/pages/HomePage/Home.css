@@ -1,6 +1,5 @@
 h1.welcome {
-  margin-inline: auto;
-  width: 800px;
+  padding-top: 2px;
   text-align: center;
 }
 .search-feed-container {
@@ -10,31 +9,27 @@ h1.welcome {
 }
 
 .board-feed-container {
-  display: block;
-  /* width: 100%; */
-  flex: 1;
-  text-align: left;
-  margin-inline: 6rem;
+  position: fixed;
 }
 .outer-board-container {
-  position: fixed;
+  padding: 2.5rem 3.5rem;
 }
 .outerBoard {
   margin: 0 auto;
   align-items: center;
-  
+  justify-content: center;
 }
 
 #board-matte {
+  justify-content: center;
   width: 660px;
-  display: flex;
+  display: grid;
   /* width: 624px; */
   min-height: 850px;
   height: 70vh;
   max-height: 80vh;
-  background-color: rgb(197, 174, 134, .3);
-  margin: auto;
-  justify-content: center;
+  background-color: rgb(197, 174, 134, 0.3);
+
   border: 4px solid #645050;
   border-radius: 12px;
 }
@@ -58,48 +53,50 @@ h1.welcome {
   font-kerning: none;
   font-weight: bold;
   position: relative;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   color: rgb(0, 0, 0);
   text-shadow: 2px 0px 10px rgb(116, 116, 116);
   text-decoration: underline;
-  
 }
 .buttons {
   margin-block-start: 1.5rem;
   margin-right: 4px;
   width: 90%;
-  
 }
 .moves.inline {
   border-radius: 7px;
   /* background: rgb(236, 236, 236, .92); */
-  background-color:rgba(230, 226, 226, 0.65);
-  margin-block-start: 1rem;
+  background-color: rgba(230, 226, 226, 0.65);
+  margin-block-start: 2rem;
   padding: 12px;
   min-height: 5rem;
   text-align: left;
 }
 
 .moves.inline:hover {
-  background-color:rgba(231, 229, 229, 0.95);
+  background-color: rgba(231, 229, 229, 0.95);
 }
 .boardAnd {
-  font-family: 'Helvetica', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Helvetica", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   padding: 1px;
 }
 
 .board-container {
   border: 2px hidden grey;
   border-radius: 5px;
-  
   min-height: fit-content;
-  height: 840px;
+  height: 855px;
   max-height: 90vh;
-  margin: auto;
   justify-items: stretch;
 }
 
 .center-section #fade-out {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  height: 2rem;
   animation: fade-out 5s 1;
   -webkit-animation: fade-out 5s 1;
   -moz-animation: fade-out 5s 1;
@@ -120,38 +117,37 @@ h1.welcome {
 }
 
 @-moz-keyframes fade-out {
-    from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes fade-out {
-    from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @-o-keyframes fade-out {
-    from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @-ms-keyframes fade-out {
-    from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-

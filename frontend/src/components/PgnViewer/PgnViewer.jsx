@@ -36,7 +36,7 @@ function PGNViewer(props) {
         notation: 'short',
         notationLayout: 'inline',
         movable: { free: false }, // no documentation
-        highlight: { lastMove: true }, // no documentation
+        highlight: { lastMove: false }, // no documentation
         viewOnly: true, // no documentation
         resizable: false,
         manyGames: false,

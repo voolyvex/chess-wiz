@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 function AnalyzePage() {
   const [game, setGame] = useState(new Chess());
   const [user] = useAuth();
+  const mystring = "______";
 
   // Perform a function on the game state
 
@@ -50,25 +51,27 @@ function AnalyzePage() {
         <SavePgnToDatabase
           headers={game.header(
             "Event",
-            "",
+            mystring,
             "Site",
-            "",
+            mystring,
             "Date",
-            "",
+            date,
             "Round",
-            "",
+            "1",
             "White",
-            "",
+            "Game Analysis",
             "Black",
-            "",
+            user.username,
             "Result",
-            "",
+            "1-0",
             "WhiteElo",
-            "",
+            "2200",
             "BlackElo",
-            "",
+            "1800",
             "ECO",
-            "",
+            "C64",
+            "Time Control",
+            mystring,
             "Archived",
             date
           )}
