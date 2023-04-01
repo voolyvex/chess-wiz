@@ -1,7 +1,7 @@
 # chess-wiz
 
 Built with Django, Python, Javascript, and React. 
-Designed for chess enthusiasts, students, and their coaches to prepare them for an upcoming match.
+Designed for chess enthusiasts, students, and their coaches to prepare and train for an upcoming match.
 
 ## project notes
 A full stack web application created as my final Capstone project for devCodeCamp.
