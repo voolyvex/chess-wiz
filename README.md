@@ -1,9 +1,12 @@
-# chess-prep
-For chess enthusiasts, students, and their coaches to prepare them for an upcoming match.
+# chess-wiz
+
+Built with Django, Python, Javascript, and React. 
+Designed for chess enthusiasts, students, and their coaches to prepare and train for an upcoming match.
 
 ## project notes
-A full stack web application designed by me for my devCodeCamp Capstone project.
+Created for my final Capstone project at devCodeCamp.
 
-The React frontend utilizes @mliebelt/pgn-viewer for displaying chess games (PGN) and positions (FEN), fetched from Lichess api and custom Django REST api.
+## libraries
+The React frontend utilizes @mliebelt/pgn-viewer for displaying chess games (PGN), fetched from Chess.com API and custom Django REST API.
+Chess.js and react-chessboard utilized for the Analyze board feature.
 
-###### VOOLYVEX
