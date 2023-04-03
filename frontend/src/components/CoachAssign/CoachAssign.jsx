@@ -26,28 +26,23 @@ const CoachAssignPGN = ({ pgn, id }) => {
             console.log(error.message)
         }
     }
-
-    useEffect(() => {
-        fetchStudents();
-        console.log(PGNid)
-    }, []);
-
+    
     const options = students.map(student => ({ value: student.username, label: student.username }));
-
+    
     const postPGN = async () => {
         let pgn = { "pgn": PGN }
-
+        
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } }).then(function (response) {
                 const pgnId = response.data.id
                 patchPGN(studentId, pgnId);
             });
-
+            
         } catch (error) {
             console.log(error.message)
         }
     };
-
+    
     async function patchPGN(studentId, pgnId) {
         try {
             const response = await axios.patch(`http://127.0.0.1:8000/api/pgn/assign/${studentId}/${pgnId}/`, {}, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
@@ -56,22 +51,26 @@ const CoachAssignPGN = ({ pgn, id }) => {
             console.log(error.message)
         }
     };
-
+    
+    useEffect(() => {
+        fetchStudents();
+    }, []);
+    
+    useEffect(() => {
+        setPGN(pgn)
+    }, [pgn]);
+    
+    useEffect(() => {
+        setStudentId(selectedValue.value);
+    }, [selectedValue]);
+    
     const handleSubmit = (e) => {
         // e.preventDefault();
         e.stopPropagation();
         !PGNid ? postPGN() :
-            patchPGN(studentId, PGNid);
+        patchPGN(studentId, PGNid);
     }
-
-    useEffect(() => {
-        setPGN(pgn)
-    }, [pgn]);
-
-    useEffect(() => {
-        setStudentId(selectedValue.value);
-    }, [selectedValue]);
-
+    
     return (
         <article className='assign-container'>
             <form className='assign-form' onSubmit={handleSubmit}>

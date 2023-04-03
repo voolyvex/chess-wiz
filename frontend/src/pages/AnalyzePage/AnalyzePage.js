@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 function AnalyzePage() {
   const [game, setGame] = useState(new Chess());
   const [user] = useAuth();
-  const mystring = "______";
+  const mystring = "_______";
 
   // Perform a function on the game state
 
@@ -70,10 +70,10 @@ function AnalyzePage() {
             "1800",
             "ECO",
             "C64",
-            "Time Control",
+            "TimeControl",
             mystring,
             "Archived",
-            date
+            date,
           )}
           pgn={game.pgn({ maxWidth: 5, newline: "<br />" })}
         />
