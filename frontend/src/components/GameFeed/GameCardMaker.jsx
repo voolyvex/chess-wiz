@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import './gamefeed.css';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import axios from 'axios';
-import { getAllFavorites } from '../Favorites/Favorites';
-import useFetchFavorites from '../Favorites/useFetchFavorites';
+
 
 const GameCardMaker = ({ id, playerWhite, playerBlack, eloWhite, eloBlack, date, eco, moves }) => {
-  const {games,refetch} = useFetchFavorites()
+
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -33,9 +32,8 @@ const GameCardMaker = ({ id, playerWhite, playerBlack, eloWhite, eloBlack, date,
 
   const handleClick = async (event) => {
     // event.preventDefault();
-    // event.stopPropagation();
-    await patchPGN(id);
-    await refetch()
+    event.stopPropagation();
+    patchPGN(id);
   };
 
   // create game card to be rendered

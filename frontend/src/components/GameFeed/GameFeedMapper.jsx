@@ -4,7 +4,7 @@ import GameCardMaker from './GameCardMaker';
 
 
 
-const GameFeedMapper = ({ games }) => {
+const GameFeedMapper = ({ games, getAllFavorites }) => {
   const gameFeed = games.map((game) => (
     <GameCardMaker
       key={game.id}
@@ -17,6 +17,7 @@ const GameFeedMapper = ({ games }) => {
       date={game.date}
       eco={game.eco}
       moves={game.moves}
+      getAllFavorites={getAllFavorites}
     />
   ));
 
