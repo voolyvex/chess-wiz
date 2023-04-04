@@ -17,34 +17,36 @@
 
 h3 {
   font-size: larger;
+ 
+  
 }
 .feed-title-1 {
-  color: rgb(215, 117, 68);
+  color: rgb(255, 255, 255, .45);
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
-  text-shadow: 8px 5px 8px rgb(215, 117, 68, 0.45);
+  text-shadow: 9px 5px 7px rgb(215, 117, 64, 0.26);
 }
 .feed-title-2 {
-  color: rgb(215, 117, 68);
+  color: rgb(255, 255, 255, .45);
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
-  text-shadow: 4px 5px 8px rgb(215, 117, 68, 0.45);
+  text-shadow: 4.5px 5px 7px rgb(215, 117, 64, 0.26);
 }
 .feed-title-3 {
-  color: rgb(215, 117, 68);
+  color: rgb(255, 255, 255, .45);
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
-  text-shadow: -4px 5px 8px rgb(215, 117, 68, 0.45);
+  text-shadow: -4.5px 5px 7px rgb(215, 117, 64, 0.26);
 }
 .feed-title-4 {
-  color: rgb(215, 117, 68);
+  color: rgb(255, 255, 255, .45);
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
-  text-shadow: -8px 5px 8px rgb(215, 117, 68, 0.45);
+  text-shadow: -9px 5px 7px rgb(215, 117, 64, 0.26);
 }
 .search-page {
   margin: auto;
@@ -116,6 +118,7 @@ table {
   max-width: 280px;
   text-align: left;
   table-layout: auto;
+  
 }
 tr {
   vertical-align: top;
@@ -238,7 +241,7 @@ h4 {
   border: 2px solid rgba(5, 0, 0, 0.2) ;
   flex-wrap:wrap;
   flex-flow: column;
-  padding: 6px .5rem;
+  padding: 3px .5rem;
   
   min-height: 120px;
   height: 164px;
@@ -368,8 +371,13 @@ h4 {
 .gmoves-container {
   padding-inline: 2rem;
   flex-wrap: wrap;
+  height:3rem;
 }
+
 #gmoves {
+  
+  height:fit-content;
+  max-height: 4rem;
   position: relative;
   text-decoration: none;
   /* color: #DEB887; */
@@ -378,7 +386,7 @@ h4 {
   opacity: 90%;
   font-size: medium;
   text-align: justify;
-  text-overflow: ellipsis;
+ 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 

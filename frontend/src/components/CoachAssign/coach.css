@@ -34,7 +34,13 @@ form.assign-form {
 .line {
   margin-inline: .75rem;
 }
-
+.assign-submitted {
+  width: 30px;
+  position: relative;
+  flex-basis: auto;
+  height: 30px;
+  color: green;
+}
 .assign-button {
   flex-basis: auto;
 }

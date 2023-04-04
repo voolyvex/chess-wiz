@@ -1,6 +1,24 @@
-h1.welcome {
-  padding-top: 2px;
+
+h1.welcome-text  {
+  font-kerning: none;
+  text-shadow: none;
+  font-weight: light; 
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: white;
   text-align: center;
+  padding-top: 7px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  height: 2rem;
+  font-size: medium;
+  align-items: top;
+  opacity: .33;
+}
+section.center-section {
+  justify-content: center;
 }
 .search-feed-container {
   min-height: 100vh;
@@ -22,7 +40,7 @@ h1.welcome {
 
 #board-matte {
   justify-content: center;
-  width: 660px;
+  width: 664px;
   display: grid;
   /* width: 624px; */
   min-height: 850px;
@@ -47,6 +65,7 @@ h1.welcome {
   color: rgb(255, 255, 255);
   text-shadow: 4px 0px 20px rgb(132, 132, 132);
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .blackHeader {
   text-align: left;
@@ -57,6 +76,7 @@ h1.welcome {
   color: rgb(0, 0, 0);
   text-shadow: 2px 0px 10px rgb(116, 116, 116);
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .buttons {
   margin-block-start: 1.5rem;
@@ -79,7 +99,7 @@ h1.welcome {
 .boardAnd {
   font-family: "Helvetica", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  padding: 1px;
+  padding: 0;
 }
 
 .board-container {
@@ -112,7 +132,7 @@ h1.welcome {
     opacity: 1;
   }
   to {
-    opacity: 0;
+    opacity: .8;
   }
 }
 
@@ -121,7 +141,7 @@ h1.welcome {
     opacity: 1;
   }
   to {
-    opacity: 0;
+    opacity: .8;
   }
 }
 
@@ -130,7 +150,7 @@ h1.welcome {
     opacity: 1;
   }
   to {
-    opacity: 0;
+    opacity: .8;
   }
 }
 
@@ -139,7 +159,7 @@ h1.welcome {
     opacity: 1;
   }
   to {
-    opacity: 0;
+    opacity: .8;
   }
 }
 
@@ -148,6 +168,6 @@ h1.welcome {
     opacity: 1;
   }
   to {
-    opacity: 0;
+    opacity: .8;
   }
 }

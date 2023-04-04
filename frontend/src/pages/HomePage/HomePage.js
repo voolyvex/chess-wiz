@@ -27,9 +27,13 @@ const HomePage = () => {
         </div>
       </section>
       <section className="center-section">
-        {user ? (
-          <div id="fade-out">
-            <h1 className="welcome">Welcome back, {user.username}!</h1>
+        {user && user.is_coach ? (
+          <div className="welcome-text">
+            <h1 className="welcome-text">Welcome, Coach {user.username}!</h1>
+          </div>
+        ) : user ? (
+          <div className="welcome-text">
+            <h1 className="welcome-text">Welcome, {user.username}!</h1>
           </div>
         ) : null}
         <div className="board-feed-container">

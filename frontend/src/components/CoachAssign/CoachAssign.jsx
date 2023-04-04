@@ -13,7 +13,7 @@ const CoachAssignPGN = ({ pgn, id }) => {
     const [studentId, setStudentId] = useState(10);
     const [selectedValue, setSelectedValue] = useState({ value: '' });
     const [students, setStudents] = useState([]);
-    const mystring = "_________";
+    const mystring = "________";
 
 
 
@@ -21,30 +21,33 @@ const CoachAssignPGN = ({ pgn, id }) => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/auth/", { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
             setStudents(response.data.filter(student => student.is_student));
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error.message)
         }
     }
 
     useEffect(() => {
         fetchStudents();
-        
     }, []);
+
+    useEffect(() => {
+        setPGN(pgn)
+    }, [pgn]);
+
+    useEffect(() => {
+        setStudentId(selectedValue.value);
+    }, [selectedValue]);
 
     const options = students.map(student => ({ value: student.username, label: student.username }));
 
-    const postPGN = async (studentId) => {
-        let pgn = { "pgn": PGN }
-
-        try {
-            const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } }).then(function (response) {
-                const pgnId = response.data.id
-                patchPGN(studentId, pgnId);
-            });
-
-        } catch (error) {
-            console.log(error.message)
+    const postPGN = async () => {
+        const pgn = { "pgn": PGN }
+        const response = await axios.post("http://127.0.0.1:8000/api/pgn/", pgn, { headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}` } });
+        if (response && response.data) {
+            const pgnId = response.data.id;
+            await patchPGN(studentId, pgnId);
+        } else {
+            console.log('Error: No data returned from API');
         }
     };
 
@@ -57,20 +60,21 @@ const CoachAssignPGN = ({ pgn, id }) => {
         }
     };
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         // e.preventDefault();
         e.stopPropagation();
-        !PGNid ? postPGN(studentId) :
-            patchPGN(studentId, PGNid);
-    }
-
-    useEffect(() => {
-        setPGN(pgn)
-    }, [pgn]);
-
-    useEffect(() => {
-        setStudentId(selectedValue.value);
-    }, [selectedValue]);
+        try {
+            if (!PGNid) {
+                const response = await postPGN(studentId);
+                setPGNid(response.data.id);
+            } else {
+                await patchPGN(studentId, PGNid);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     return (
         <article className='assign-container'>
@@ -84,6 +88,7 @@ const CoachAssignPGN = ({ pgn, id }) => {
                                 </div>}
                         </>
                     </div>
+
                     <button className='assign-button' type='submit'>
                         <HiArrowNarrowRight style={{ fontSize: "20px" }} />
                     </button>
@@ -97,6 +102,6 @@ const CoachAssignPGN = ({ pgn, id }) => {
             </form>
         </article>
     );
-}
+};
 
 export default CoachAssignPGN;
