@@ -1,5 +1,7 @@
 # chess-wiz
 
+#### Demo video: https://www.youtube.com/watch?v=F8XmrPRID6I
+
 Built with Django, Python, Javascript, and React. 
 Designed for chess enthusiasts, students, and their coaches to prepare and train for an upcoming match.
 
