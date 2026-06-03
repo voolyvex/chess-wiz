@@ -1,16 +1,23 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import Children from 'react-children-utilities'
 import * as uuid from 'uuid'
 import { pgnView } from '@mliebelt/pgn-viewer'
+import { normalizePgn } from '../../utils/normalizePgn'
 import '../../pages/HomePage/Home.css'
 
 function PGNViewer(props) {
-  const gameDecription = Children.onlyText(props.children)
-  const id = 'board-' + uuid.v4()
-
+  const gameDecription = normalizePgn(Children.onlyText(props.children))
+  const [boardId] = useState(() => 'board-' + uuid.v4())
 
   useLayoutEffect(() => {
-    pgnView(id,
+    if (!gameDecription) return
+
+    const container = document.getElementById(boardId)
+    if (container) {
+      container.innerHTML = ''
+    }
+
+    pgnView(boardId,
       {
         pgn: gameDecription,
         lazyLoad: true,
@@ -42,11 +49,15 @@ function PGNViewer(props) {
         manyGames: false,
       }
     )
-  })
+  }, [boardId, gameDecription])
+
+  if (!gameDecription) {
+    return null
+  }
 
   return (
     <div id='board-matte'>
-      <div className="board-container" id={id}></div>
+      <div className="board-container" id={boardId}></div>
     </div>
   )
 }

@@ -30,32 +30,30 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        # If added new columns through the User model, add them in the fields
-        # list as seen below
-        fields = ('username', 'password', 'email',
-                  'first_name', 'last_name', 'is_student', 'is_coach', 'my_games', 'assigned', 'pgn_favorites')
+        # Many-to-many fields should not be required at registration time.
+        fields = (
+            'username',
+            'password',
+            'email',
+            'first_name',
+            'last_name',
+            'is_student',
+            'is_coach',
+        )
 
     def create(self, validated_data):
-
-        user = User.objects.create(
+        # Use Django's user creation helper so password hashing is correct.
+        user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            is_student=validated_data['is_student'],
-            is_coach=validated_data['is_coach'],
-            my_games=validated_data['my_games'],
-            assigned=validated_data['assigned'],
-            pgn_favorites=validated_data['pgn_favorites']
-
-            # If added new columns through the User model, add them in this
-            # create method. Example below:
-
-            # is_student=validated_data['is_student']
+            password=validated_data['password'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
         )
-        user.set_password(validated_data['password'])
+        # Optional flags; default False if not provided.
+        user.is_student = validated_data.get('is_student', False)
+        user.is_coach = validated_data.get('is_coach', False)
         user.save()
-
         return user
 
 

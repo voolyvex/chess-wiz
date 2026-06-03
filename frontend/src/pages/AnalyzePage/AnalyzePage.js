@@ -14,7 +14,7 @@ function AnalyzePage() {
 
   function safeGameMutate(modify) {
     setGame((g) => {
-      const update = { ...g };
+      const update = new Chess(g.fen());
       modify(update);
       return update;
     });
@@ -75,7 +75,7 @@ function AnalyzePage() {
             "Archived",
             date,
           )}
-          pgn={game.pgn({ maxWidth: 5, newline: "<br />" })}
+          pgn={game.pgn()}
         />
       </div>
     </div>

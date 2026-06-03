@@ -1,5 +1,5 @@
 import "./Play.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 import useAuth from "../../hooks/useAuth";
@@ -8,54 +8,52 @@ import SavePgnToDatabase from "../../components/SavePgnToDatabase/SavePgnToDatab
 function Play() {
   const [game, setGame] = useState(new Chess());
   const [user] = useAuth();
-  //Let's perform a function on the game state
 
-  function safeGameMutate(modify) {
+  useEffect(() => {
+    if (!user?.username) return;
     setGame((g) => {
-      const update = { ...g };
-      modify(update);
+      const update = new Chess(g.fen());
+      update.header(
+        "White",
+        user.username,
+        "Black",
+        "AI (Level 0)",
+        "Date",
+        new Date().toISOString().slice(0, 10),
+      );
       return update;
     });
-  }
-  //Movement of computer
-  function makeRandomMove() {
-    const possibleMove = game.moves();
-
-    //exit if the game is over
-
-    if (game.game_over() || game.in_draw() || possibleMove.length === 0) {
-      
-      return;
-    }
-    //select random move
-
-    const randomIndex = Math.floor(Math.random() * possibleMove.length);
-    //play random move
-    safeGameMutate((game) => {
-      game.move(possibleMove[randomIndex]);
-    });
-  }
-
-  //Perform an action when a piece is droped by a user
+  }, [user?.username]);
 
   function onDrop(source, target) {
     let move = null;
-    safeGameMutate((game) => {
-      move = game.move({
+    setGame((g) => {
+      const update = new Chess(g.fen());
+      move = update.move({
         from: source,
         to: target,
         promotion: "q",
       });
+      if (move == null) return g;
+
+      setTimeout(() => {
+        setGame((current) => {
+          if (current.game_over() || current.in_draw()) return current;
+          const possibleMoves = current.moves();
+          if (possibleMoves.length === 0) return current;
+          const aiMove = new Chess(current.fen());
+          aiMove.move(
+            possibleMoves[Math.floor(Math.random() * possibleMoves.length)],
+          );
+          return aiMove;
+        });
+      }, 200);
+
+      return update;
     });
-    //illegal move
-    if (move == null) return false;
-    //valid move
-    setTimeout(makeRandomMove, 200);
-    return true;
+    return move != null;
   }
-  var date=Date()
-  game.header('White', user.username, 'Black', 'AI (Level 0)', 'Date', date)
-  console.log(game.pgn({ maxWidth: 5, newline: '<br />' }));
+
   return (
     <div className="play-page">
       <div className="play-container">
@@ -64,7 +62,7 @@ function Play() {
         </div>
       </div>
       <div className="save-container">
-      <SavePgnToDatabase pgn={game.pgn({ maxWidth: 5, newline: '<br />' })}/>
+        <SavePgnToDatabase pgn={game.pgn()} />
       </div>
     </div>
   );
